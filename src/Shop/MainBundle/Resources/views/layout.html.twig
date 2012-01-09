@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Reshop{% endblock %}
+    
+{% block body %}
+
+    <div class="container">
+        <div class="sixteen columns">
+            {% block content %}{% endblock %}
+            <br class="clearfix" />
+        </div>
+    </div>
+
+{% endblock %}
+
+{#<div class="container">
+  
+  <!-- Give column value in word form (one, two..., twelve) -->
+  <div class="sixteen columns">
+    <h1>Full Width Column</h1>
+  </div>
+  
+  <!-- Sweet nested columns cleared with a clearfix class -->
+  <div class="six columns clearfix">
+    <!-- In nested columns give the first column a class of alpha
+    and the second a class of omega -->
+    <div class="three columns alpha">...</div>
+    <div class="three columns omega">...</div>
+  </div>
+
+  <!-- Sweet nested columns cleared by wrapping a .row -->
+  <div class="five columns">
+    <div class="row">
+      <div class="three columns alpha">...</div>
+      <div class="two columns omega">...</div>
+    </div>
+  </div>
+
+  <!-- Sweet nested columns cleared by <br class="clear"> -->
+  <div class="five columns">
+    <div class="three columns alpha">...</div>
+    <div class="two columns omega">...</div>
+    <br class="clear" />
+  </div>
+
+  <!-- Can push over by columns -->
+  <div class="five columns offset-by-one"></div>
+
+</div>#}
