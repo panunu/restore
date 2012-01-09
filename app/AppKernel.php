@@ -20,7 +20,7 @@ class AppKernel extends Kernel
         );
         
         $bundles = array_merge($bundles, array(
-            
+            new Shop\FrameworkBundle\ShopFrameworkBundle(),
         ));
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
