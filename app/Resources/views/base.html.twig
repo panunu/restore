@@ -4,16 +4,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         
-        {% stylesheets filter='less' output='/css/shop.css' '@ShopMainBundle/Resources/less/shop.less' %}
-            <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
-        {% endstylesheets %}
-        
         <link href="{{ asset('css/base.css') }}"     rel="stylesheet" type="text/css" media="all"></link>
         <link href="{{ asset('css/skeleton.css') }}" rel="stylesheet" type="text/css" media="all"></link>
         <link href="{{ asset('css/layout.css') }}"   rel="stylesheet" type="text/css" media="all"></link>
         
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css" media="all"></link>
         
+        {% stylesheets filter='less' output='/css/shop.css' '@ShopMainBundle/Resources/less/shop.less' %}
+            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" media="all" />
+        {% endstylesheets %}
+                
         {% block stylesheets %}{% endblock %}
         
         <script src="{{ asset('js/tabs.js') }}" type="text/javascript"></script>
