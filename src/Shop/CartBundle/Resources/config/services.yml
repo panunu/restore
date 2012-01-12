@@ -1,0 +1,4 @@
+services:
+    shop_cart.service.cart:
+        class:     Shop\CartBundle\Service\CartService
+        #arguments: ["@doctrine.orm.entity_manager"]
