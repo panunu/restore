@@ -22,6 +22,7 @@ class AppKernel extends Kernel
         $bundles = array_merge($bundles, array(
             new Shop\FrameworkBundle\ShopFrameworkBundle(),
             new Shop\MainBundle\ShopMainBundle(),
+            new Shop\ProductBundle\ShopProductBundle(),
             new Shop\CartBundle\ShopCartBundle(),
         ));
 
