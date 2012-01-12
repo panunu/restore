@@ -1,0 +1,125 @@
+// Parameters
+
+@font: "Oldenburg";
+
+@brown: #7f592e;
+@grey:  #7f7f7f;
+
+// Functions 
+
+.box-shadow(@params)
+{
+    box-shadow:         @params;
+    -moz-box-shadow:    @params;
+    -webkit-box-shadow: @params;
+}
+
+.rounded(@radius)
+{
+    border-radius:         @radius;
+    -moz-border-radius:    @radius;
+    -webkit-border-radius: @radius;
+}
+
+.gradient-vertical(@top, @bottom)
+{
+  background:       @top;
+  background-image: -moz-linear-gradient(top,  @top, @bottom);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@top), to(@bottom));
+  background-image: -webkit-linear-gradient(top, @top, @bottom);
+  background-image: -o-linear-gradient(top, @top, @bottom);
+  background-image: linear-gradient(top, @top, @bottom);
+  filter:           %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @top, @bottom);
+  -ms-filter:       %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @top, @bottom);
+  background-image: -ms-linear-gradient(top, @top, @bottom);
+}
+
+// Global
+
+body { cursor: default; }
+
+.left  { float: left;  }
+.right { float: right; }
+
+ul { margin: 0px; }
+
+a.button, button, submit, input[type="submit"]
+{
+    margin-top: -4px;
+    padding:     4px 8px 4px 8px;
+
+    font-size:       smaller;
+    text-transform:  uppercase;
+    text-decoration: none;
+    color:           white;
+    text-shadow:     0px 1px 2px #333;
+
+    &:hover { color: white; text-shadow: 0px 1px 2px #666; .gradient-vertical(#a19a94, #8c847c); }
+
+    .gradient-vertical(#a19a94, #8c847c);
+    .box-shadow(0px 2px 2px #ddd);
+    .rounded(2px);
+}
+
+a
+{
+    color: #7f7f7f;
+
+    &:hover { color: #555; }
+}
+
+// Elements
+
+#toolbar
+{
+    width:  100%;
+    height: 35px;
+
+    padding-top:   15px;
+    margin-bottom: 50px;
+
+    background-color: white;
+    border-bottom:    1px solid #ddd;
+
+    .box-shadow(0px 5px 5px #eee);
+
+    .shopping-cart { margin: 0px 20px 0px 5px; }
+}
+
+#logo
+{
+    font-size:   32px;
+    //font-family: @font;
+    color:       @grey;
+}
+
+#navigation
+{
+    margin-left: -8px;
+
+    font-size:   18px;
+    //font-family: @font;
+    font-weight: bold;
+    
+    text-transform: uppercase;
+    line-height:    30px;
+
+    li { height: 30px; }
+
+    a
+    {
+        height:  30px;
+        padding:  8px;
+
+        text-decoration: none;
+        
+        color: @grey;
+
+        &:hover
+        {
+            background-color: white;
+        
+            .box-shadow(1px 5px 5px #ddd);
+        }
+    }
+}

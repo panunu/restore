@@ -4,6 +4,7 @@ imports:
 
 framework:
     secret:          %secret%
+    translator:      { fallback: fi }
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
