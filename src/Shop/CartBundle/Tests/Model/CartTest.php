@@ -26,6 +26,18 @@ class CartTest extends PHPUnit_Framework_TestCase
      */
     public function doesNotHaveProductsIfNothingAdded()
     {
+        $this->assertEmpty($this->cart->getProducts());
+    }
+    
+    /**
+     * @test
+     * @group model
+     * @group cart
+     */
+    public function canHaveMultipleProducts()
+    {
+        $this->cart->addProduct('A')->addProduct('B');
         
+        $this->assertEquals(2, count($this->cart->getProducts()));
     }
 }
