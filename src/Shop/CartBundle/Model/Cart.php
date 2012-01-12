@@ -2,6 +2,8 @@
 
 namespace Shop\CartBundle\Model;
 
+use Shop\ProductBundle\Entity\Product;
+
 class Cart
 {
     /**
@@ -13,7 +15,7 @@ class Cart
      * @param  Product $product 
      * @return Cart
      */
-    public function addProduct($product)
+    public function addProduct(Product $product)
     {
         $this->products[] = $product;
         

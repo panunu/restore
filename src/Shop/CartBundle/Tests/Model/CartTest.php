@@ -2,10 +2,11 @@
 
 namespace Shop\CartBundle\Tests\Model;
 
-use \PHPUnit_Framework_TestCase,
-    Shop\CartBundle\Model\Cart;
+use Shop\FrameworkBundle\Test\TestCase,
+    Shop\CartBundle\Model\Cart,
+    \Shop\ProductBundle\Entity\Product;
 
-class CartTest extends PHPUnit_Framework_TestCase
+class CartTest extends TestCase
 {
     /**
      * @var Cart
@@ -36,7 +37,7 @@ class CartTest extends PHPUnit_Framework_TestCase
      */
     public function canHaveMultipleProducts()
     {
-        $this->cart->addProduct('A')->addProduct('B');
+        $this->cart->addProduct(new Product())->addProduct(new Product());
         
         $this->assertEquals(2, count($this->cart->getProducts()));
     }
