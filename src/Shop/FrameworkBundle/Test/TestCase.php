@@ -17,7 +17,7 @@ abstract class TestCase extends WebTestCase
     /**
      * @var Client
      */
-    private $client;
+    protected $client;
 
     public function setUp()
     {
