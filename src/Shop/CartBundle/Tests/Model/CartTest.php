@@ -47,14 +47,10 @@ class CartTest extends TestCase
      * @group model
      * @group cart
      */
-    public function removesSingleProduct() // TODO: Refactor to use FixtureFactory.
+    public function removesSingleProduct()
     {
         $a = new Product();
         $b = new Product();
-        
-        $this->getEntityManager()->persist($a);
-        $this->getEntityManager()->persist($b);
-        $this->getEntityManager()->flush();
         
         $this->cart->addProduct($a)->addProduct($a)->addProduct($b);
         $this->cart->removeProduct($a);        

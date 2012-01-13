@@ -33,5 +33,4 @@ class Product extends Entity
      * @ORM\Column(name="price", type="decimal", length="8", scale="2", nullable=false)
      */
     protected $price;
-
 }
