@@ -51,9 +51,19 @@ class CartService
     /**
      * @return int
      */
-    public function countProductsInCart()
+    public function getNumberOfProductsInCart()
     {
         return count($this->getCart()->getProducts());
+    }
+    
+    /**
+     * @return double
+     */
+    public function getTotalSumOfCart()
+    {
+        return array_reduce($this->getCart()->getProducts(), function($total, $product) {
+            return $total += $product->getPrice();
+        }, 0);
     }
     
     /**
