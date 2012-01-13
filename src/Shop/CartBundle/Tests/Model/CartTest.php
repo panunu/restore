@@ -41,4 +41,24 @@ class CartTest extends TestCase
         
         $this->assertEquals(2, count($this->cart->getProducts()));
     }
+    
+    /**
+     * @test
+     * @group model
+     * @group cart
+     */
+    public function removesSingleProduct() // TODO: Refactor to use FixtureFactory.
+    {
+        $a = new Product();
+        $b = new Product();
+        
+        $this->getEntityManager()->persist($a);
+        $this->getEntityManager()->persist($b);
+        $this->getEntityManager()->flush();
+        
+        $this->cart->addProduct($a)->addProduct($a)->addProduct($b);
+        $this->cart->removeProduct($a);        
+        
+        $this->assertEquals(2, count($this->cart->getProducts()));
+    }
 }
