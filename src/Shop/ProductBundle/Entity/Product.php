@@ -33,4 +33,12 @@ class Product extends Entity
      * @ORM\Column(name="price", type="decimal", length="8", scale="2", nullable=false)
      */
     protected $price;
+    
+    /**
+     * @var Tax
+     *
+     * @ORM\ManyToOne(targetEntity="Tax", inversedBy="products")
+     * @ORM\JoinColumn(name="Tax", referencedColumnName="id")
+     */
+    protected $tax;
 }
