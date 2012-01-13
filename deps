@@ -61,3 +61,6 @@
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
     version=v1.0.1
+
+[xi-doctrine]
+    git=git://github.com/xi-project/xi-doctrine.git

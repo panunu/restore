@@ -5,7 +5,8 @@ namespace Shop\FrameworkBundle\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase,
     Symfony\Component\DependencyInjection\ContainerInterface,
     \Doctrine\ORM\EntityManager,
-    \Doctrine\ORM\Tools\SchemaTool;
+    \Doctrine\ORM\Tools\SchemaTool,
+    Shop\FrameworkBundle\Test\Fixtures\FixtureFactory;
 
 abstract class TestCase extends WebTestCase
 {
@@ -18,15 +19,22 @@ abstract class TestCase extends WebTestCase
      * @var Client
      */
     protected $client;
+    
+    /**
+     * @var FixtureFactory
+     */
+    protected $factory;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->client = static::createClient();
-        $this->em     = $this->getContainer()->get('doctrine.orm.entity_manager');
-
-        $this->setupSchema();
+        $this->client  = static::createClient();
+        $this->em      = $this->getContainer()->get('doctrine.orm.entity_manager');
+        
+        $this->setupSchema($this->em);
+        
+        $this->factory = new FixtureFactory($this->em);
     }
 
     /**
@@ -35,6 +43,14 @@ abstract class TestCase extends WebTestCase
     public function getEntityManager()
     {
         return $this->em;
+    }
+    
+    /**
+     * @return FixtureFactory
+     */
+    public function getFixtureFactory()
+    {
+        return $this->factory;
     }
     
     /**
@@ -52,15 +68,15 @@ abstract class TestCase extends WebTestCase
     {
         return $this->getClient()->getContainer();
     }
-        
+    
     /**
      * @return EntityTestCase
      */
-    protected function setupSchema()
+    protected function setupSchema(EntityManager $em)
     {
-        $tool = new SchemaTool($this->em);
+        $tool = new SchemaTool($em);
         $tool->dropDatabase();
-        $tool->createSchema($this->em->getMetadataFactory()->getAllMetadata());
+        $tool->createSchema($em->getMetadataFactory()->getAllMetadata());
         
         return $this;
     }
