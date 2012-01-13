@@ -18,6 +18,9 @@ class CartService
      */
     protected $cart;
     
+    /**
+     * @param Session $session 
+     */
     public function __construct(Session $session)
     {
         $this->session = $session;
