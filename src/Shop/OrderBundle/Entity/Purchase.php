@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM,
     Shop\FrameworkBundle\Entity\AbstractEntity as Entity;
 
 /**
- * @ORM\Table(name="Order")
+ * @ORM\Table(name="Purchase")
  * @ORM\Entity
  */
-class Order extends Entity
+class Purchase extends Entity
 {
     /**
      * @var integer
@@ -23,14 +23,14 @@ class Order extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="number", type="string", columnDefinition="UNSIGED INTEGER(8) ZEROFILL", nullable=false)
+     * @ORM\Column(name="number", type="string", nullable=false)
      */
     protected $number;
     
     /**
      * @var float
      *
-     * @ORM\Column(name="tax", type="decimal", length="8", scale="2", nullable=false)
+     * @ORM\Column(name="totalTax", type="decimal", length="8", scale="2", nullable=false)
      */
     protected $totalTax;
     
@@ -49,13 +49,31 @@ class Order extends Entity
     protected $totalWithTax;
     
     /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    protected $date;
+    
+    /**
      * @var array
      * 
-     * @ORM\ManyToMany(targetEntity="Product")
-     * @ORM\JoinTable(name="OrderProduct",
-     *  joinColumns={@ORM\JoinColumn(name="Order", referencedColumnName="id")},
+     * @ORM\ManyToMany(targetEntity="Shop\ProductBundle\Entity\Product")
+     * @ORM\JoinTable(name="ProductPurchase",
+     *  joinColumns={@ORM\JoinColumn(name="Purchase", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="Product", referencedColumnName="id")}
      * )
      */    
     protected $products;
+    
+    /**
+     * @param  array    $products
+     * @return Purchase 
+     */
+    public function setProducts(array $products)
+    {
+        $this->products = $products;
+        
+        return $this;
+    }
 }
