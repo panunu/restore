@@ -51,8 +51,11 @@ class Order extends Entity
     /**
      * @var array
      * 
-     * @ORM\OneToMany(targetEntity="Product")
-     * @ORM\OrderBy({"name" = "ASC"})
+     * @ORM\ManyToMany(targetEntity="Product")
+     * @ORM\JoinTable(name="OrderProduct",
+     *  joinColumns={@ORM\JoinColumn(name="Order", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="Product", referencedColumnName="id")}
+     * )
      */    
     protected $products;
 }
