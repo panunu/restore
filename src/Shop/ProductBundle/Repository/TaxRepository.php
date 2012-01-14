@@ -7,6 +7,11 @@ use Doctrine\ORM\EntityRepository as Repository,
 
 class TaxRepository extends Repository
 {
+    /**
+     * @param  int      $type
+     * @param  DateTime $date
+     * @return Tax
+     */
     public function findByTypeAndDate($type, $date)
     {
         $qb = $this->createBaseQueryBuilder()
@@ -24,6 +29,9 @@ class TaxRepository extends Repository
         }
     }
     
+    /**
+     * @return QueryBuilder
+     */
     protected function createBaseQueryBuilder()
     {
         return $this->getEntityManager()->createQueryBuilder()
