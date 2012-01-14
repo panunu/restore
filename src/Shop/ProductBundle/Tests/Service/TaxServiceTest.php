@@ -1,6 +1,6 @@
 <?php
 
-namespace Shop\CartBundle\Tests\Model;
+namespace Shop\ProductBundle\Tests\Model;
 
 use Shop\FrameworkBundle\Test\TestCase,
     Shop\ProductBundle\Service\TaxService,
@@ -11,7 +11,7 @@ use Shop\FrameworkBundle\Test\TestCase,
 class TaxServiceTest extends TestCase
 {
     /**
-     * @var CartService
+     * @var TaxService
      */
     protected $service;
     
