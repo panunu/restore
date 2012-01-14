@@ -12,10 +12,10 @@ abstract class AbstractEntity
      * Reflects get and set methods.
      * 
      * @param  string $method
-     * @param  mixed  $parameter
+     * @param  array  $parameters
      * @return mixed
      */
-    public function __call($method, $parameter = null)
+    public function __call($method, array $parameters)
     {
         $propertyName = lcfirst(substr($method, 3));
         $accessor     = substr($method, 0, 3);
@@ -43,7 +43,7 @@ abstract class AbstractEntity
             return $property->getValue($this);
         }
                 
-        $property->setValue($this, $parameter);
+        $property->setValue($this, current($parameters));
         
         return $this;
     }
