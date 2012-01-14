@@ -32,7 +32,7 @@ class Order extends Entity
      *
      * @ORM\Column(name="tax", type="decimal", length="8", scale="2", nullable=false)
      */
-    protected $tax;
+    protected $totalTax;
     
     /**
      * @var float
@@ -47,4 +47,12 @@ class Order extends Entity
      * @ORM\Column(name="totalWithTax", type="decimal", length="8", scale="2", nullable=false)
      */
     protected $totalWithTax;
+    
+    /**
+     * @var array
+     * 
+     * @ORM\OneToMany(targetEntity="Product")
+     * @ORM\OrderBy({"name" = "ASC"})
+     */    
+    protected $products;
 }
