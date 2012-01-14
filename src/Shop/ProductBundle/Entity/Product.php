@@ -37,7 +37,7 @@ class Product extends Entity
     /**
      * @var int
      *
-     * @ORM\Column(name="tax", type="integer", length="8", nullable=false)
+     * @ORM\Column(name="tax", type="integer", length="2", nullable=false)
      */
     protected $tax;
 }
