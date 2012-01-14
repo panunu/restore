@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM,
 
 /**
  * @ORM\Table(name="Tax")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Shop\ProductBundle\Repository\TaxRepository")
  */
 class Tax extends Entity
 {
@@ -44,19 +44,15 @@ class Tax extends Entity
     protected $validity;
     
     /**
-     * @var array
-     * 
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="Tax")
-     */
-    protected $products;
-    
-    /**
      * @return array
      */
     public static function getTaxTypes()
     {
         return array(
-            self::TYPE_GENERAL, self::TYPE_FOOD, self::TYPE_CULTURE, self::TYPE_REPAIR
+            self::TYPE_GENERAL => 'Products and services',
+            self::TYPE_FOOD    => 'Food',
+            self::TYPE_CULTURE => 'Culture and literature',
+            self::TYPE_REPAIR  => 'Repairs and modifications'
         );
     }
     
@@ -65,6 +61,6 @@ class Tax extends Entity
      */
     public static function getTaxTypeValues()
     {
-        return array_values(self::getTaxTypes());
+        return array_keys(self::getTaxTypes());
     }
 }
