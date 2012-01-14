@@ -1,0 +1,4 @@
+services:
+    shop_order.service.order:
+        class:     Shop\OrderBundle\Service\OrderService
+        arguments: ["@doctrine.orm.entity_manager"]
