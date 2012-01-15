@@ -7,7 +7,7 @@ use Shop\FrameworkBundle\Test\TestCase,
     Shop\ProductBundle\Entity\Product,
     Shop\ProductBundle\Entity\Tax,
     Shop\CartBundle\Model\Cart,
-    Shop\OrderBundle\Entity\Order,
+    Shop\OrderBundle\Entity\Purchase,
     \DateTime;
 
 class OrderServiceTest extends TestCase
@@ -25,7 +25,12 @@ class OrderServiceTest extends TestCase
             $this->getContainer()->get('doctrine.orm.entity_manager')
         );
         
+        $this->cart    = new Cart();
+        $this->product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product');
+        
         $this->getEntityManager()->flush();
+        
+        $this->cart->addProduct($this->product);
     }
     
     /**
@@ -33,11 +38,21 @@ class OrderServiceTest extends TestCase
      * @group service
      * @group order
      */
-    public function createsOrderFromCart()
+    public function persistsPurchaseFromCart()
     {
-        $cart  = new Cart();
-        $order = $this->service->order($cart);
-        
-        $this->assertNotNull($order);
+        $this->assertEquals(1, $this->service->order($this->cart)->getId());
+    }
+    
+    /**
+     * @test
+     * @group service
+     * @group order
+     */
+    public function purchaseHasSameProductsAsCart()
+    {
+        $this->assertEquals(
+            $this->cart->getProducts(),
+            $this->service->order($this->cart)->getProducts()->toArray()
+        );
     }
 }

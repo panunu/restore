@@ -19,13 +19,6 @@ class Purchase extends Entity
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="number", type="string", nullable=false)
-     */
-    protected $number;
     
     /**
      * @var float
@@ -63,7 +56,7 @@ class Purchase extends Entity
      *  joinColumns={@ORM\JoinColumn(name="Purchase", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="Product", referencedColumnName="id")}
      * )
-     */    
+     */
     protected $products;
     
     /**
