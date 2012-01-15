@@ -48,4 +48,15 @@ class TaxService
     {
         return $this->repository->findByTypeAndDate($type, new DateTime());
     }
+    
+    /**
+     * @param  Product $product 
+     * @return float
+     */
+    public function tax(Product $product)
+    {
+        $percent = $this->getValidTax($product->getTax())->getPercent();
+        
+        return $product->getPrice() * ($percent / 100);
+    }
 }

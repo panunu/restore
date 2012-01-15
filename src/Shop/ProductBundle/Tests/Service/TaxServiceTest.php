@@ -88,4 +88,28 @@ class TaxServiceTest extends TestCase
             $this->service->getValidTax(Tax::TYPE_GENERAL)                
         );
     }
+    
+    /**
+     * @test
+     * @group service
+     * @group tax
+     */
+    public function calculatesTaxForProduct()
+    {
+        $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
+            'price' => 19.93
+        ));
+        
+        $tax = $this->getFixtureFactory()->get('ProductBundle\Entity\Tax', array(
+            'percent'  => 23.05,
+            'validity' => new DateTime('2000-01-02')
+        ));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->assertEquals(
+            19.03 * 0.2305,
+            $this->service->tax($product)
+        );
+    }
 }
