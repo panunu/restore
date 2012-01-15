@@ -51,22 +51,40 @@ class Purchase extends Entity
     /**
      * @var array
      * 
-     * @ORM\ManyToMany(targetEntity="Shop\ProductBundle\Entity\Product")
-     * @ORM\JoinTable(name="ProductPurchase",
-     *  joinColumns={@ORM\JoinColumn(name="Purchase", referencedColumnName="id")},
-     *  inverseJoinColumns={@ORM\JoinColumn(name="Product", referencedColumnName="id")}
-     * )
+     * @ORM\OneToMany(targetEntity="PurchaseItem", mappedBy="purchase")
      */
-    protected $products;
+    protected $items;
+    
+    public function getProducts()
+    {
+        if(!$this->getItems()) {
+            return null;
+        }
+        
+        return array_map(
+            function($item) { return $item->getProduct(); },
+            $this->items->toArray()
+        );
+    }    
+    
+    /**
+     * @param PurchaseItem $item
+     */
+    public function addItem(PurchaseItem $item)
+    {
+        $this->items[] = $item;
+        
+        return $this;
+    }
     
     /**
      * @param  array    $products
      * @return Purchase 
      */
-    public function setProducts(array $products)
+    /*public function setProducts(array $products)
     {
         $this->products = $products;
         
         return $this;
-    }
+    }*/
 }
