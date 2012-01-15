@@ -29,8 +29,9 @@ abstract class AbstractEntity
         $class = !strstr($class->getName(), 'Proxy') ?
             $class : $class->getParentClass();
                 
-        if (!$class->hasProperty($propertyName) || $class->getProperty($propertyName)->isPrivate())
-        {
+        if (!$class->hasProperty($propertyName)
+            || $class->getProperty($propertyName)->isPrivate()
+        ) {
             throw new ReflectionException(
                 "No such property as {$propertyName} in {$class->getName()}"
             );
