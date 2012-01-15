@@ -31,10 +31,9 @@ class OrderService
         
         $purchase->setProducts($cart->getProducts());
         
-        $this->countTotalsForPurchase($purchase);
+        $this->setTotalsForOrder($purchase);
         
         $purchase->setDate(new DateTime());
-        
         
         $this->em->persist($purchase);
         $this->em->flush();
@@ -42,7 +41,7 @@ class OrderService
         return $purchase;
     }
     
-    protected function countTotalsForPurchase(Purchase $purchase)
+    protected function setTotalsForOrder(Purchase $purchase)
     {
         foreach($purchase->getProducts() as $product) {
             $purchase->setTotalTax($purchase->getTotalTax());

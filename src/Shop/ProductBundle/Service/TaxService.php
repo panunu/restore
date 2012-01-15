@@ -5,6 +5,7 @@ namespace Shop\ProductBundle\Service;
 use \Doctrine\ORM\EntityManager,
     Shop\ProductBundle\Entity\Tax,
     Shop\ProductBundle\Entity\Product,
+    Shop\MainBundle\Model\Money,
     \DateTime,
     \Doctrine\ORM\EntityRepository;
 
@@ -51,12 +52,13 @@ class TaxService
     
     /**
      * @param  Product $product 
-     * @return float
+     * @return Money
      */
     public function tax(Product $product)
     {
         $percent = $this->getValidTax($product->getTax())->getPercent();
+        $price   = Money::create($product->getPrice());
         
-        return $product->getPrice() * ($percent / 100);
+        return $price->times($percent / 100);
     }
 }

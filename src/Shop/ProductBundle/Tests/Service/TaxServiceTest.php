@@ -108,8 +108,8 @@ class TaxServiceTest extends TestCase
         $this->getEntityManager()->flush();
         
         $this->assertEquals(
-            19.03 * 0.2305,
-            $this->service->tax($product)
+            round(19.93 * 0.2305, 2),
+            $this->service->tax($product)->toString()
         );
     }
 }
