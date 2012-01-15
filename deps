@@ -64,3 +64,6 @@
 
 [xi-doctrine]
     git=git://github.com/xi-project/xi-doctrine.git
+
+[xi-decimal]
+    git=git://github.com/xi-project/xi-decimal.git
