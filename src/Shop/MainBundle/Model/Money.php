@@ -6,7 +6,7 @@ use Xi\Decimal\Decimal;
 
 class Money extends Decimal
 {
-    const SCALE = 50;
+    const SCALE = 50; // TODO: Figure out min/max scale.
     
     /**
      * @param float|string|int $amount
