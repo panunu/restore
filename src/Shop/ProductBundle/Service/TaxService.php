@@ -59,6 +59,6 @@ class TaxService
         $percent = $this->getValidTax($product->getTax())->getPercent();
         $price   = Money::create($product->getPrice());
         
-        return $price->times($percent / 100);
+        return $price->times($percent / 100)->round();
     }
 }

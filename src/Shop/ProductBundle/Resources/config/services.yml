@@ -1,7 +1,7 @@
 services:
     shop_product.service.tax:
         class:     Shop\ProductBundle\Service\TaxService
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.tax"]
         
     shop_product.repository.tax:
         class:           Shop\ProductBundle\Repository\TaxRepository

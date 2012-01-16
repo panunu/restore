@@ -14,7 +14,8 @@ class Money extends Decimal
      */
     public function __construct($amount, $scale = self::SCALE)
     {
-        parent::__construct($amount, $scale);
+        $this->amt   = $this->asNormalizedString($amount, (int) $scale);
+        $this->scale = (int) $scale;
     }
     
     /**
@@ -43,7 +44,7 @@ class Money extends Decimal
      */
     public function __toString()
     {
-        return static::create($this->round()->getAmt(), 2)->getAmt();
+        return static::create($this->round()->getAmt())->getAmt();
     }
     
     /**
