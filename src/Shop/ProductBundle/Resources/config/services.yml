@@ -1,10 +1,22 @@
 services:
+    shop_product.service.product:
+        class:     Shop\ProductBundle\Service\ProductService
+        arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.product"]
+        
     shop_product.service.tax:
         class:     Shop\ProductBundle\Service\TaxService
         arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.tax"]
-        
+    
+    shop_product.repository.product:
+        class:           Shop\ProductBundle\Repository\ProductRepository
+        arguments:       [Shop\ProductBundle\Entity\Product]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+       
     shop_product.repository.tax:
         class:           Shop\ProductBundle\Repository\TaxRepository
         arguments:       [Shop\ProductBundle\Entity\Tax]
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
+        
+    
