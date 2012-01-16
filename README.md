@@ -4,7 +4,7 @@ Restore
 Bundles
 -------
 
-Main
-Product
-Order
-Cart
+* Main
+* Product
+* Order
+* Cart
