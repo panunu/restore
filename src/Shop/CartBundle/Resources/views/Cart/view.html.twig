@@ -5,7 +5,7 @@
 <h1>{{ 'Shopping cart'|trans }}</h1>
 
 {% if cart.getProducts() %}
-    
+    {% include 'ShopCartBundle:Cart:content.html.twig' with { 'cart': cart } %}
 {% else %}
     {% include 'ShopCartBundle:Cart:empty.html.twig' %}
 {% endif %}

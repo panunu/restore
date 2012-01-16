@@ -1,3 +1,7 @@
 cart_view:
     pattern:  /ostoskori
     defaults: { _controller: ShopCartBundle:Cart:view, _locale: fi }
+    
+cart_add:
+    pattern:  /ostoskori/lisaa/{product}
+    defaults: { _controller: ShopCartBundle:Cart:add, _locale: fi }

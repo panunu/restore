@@ -1,0 +1,8 @@
+<table>
+    {% for product in cart.getProducts %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }} &euro;</td>
+        </tr>
+    {% endfor %}
+</table>
