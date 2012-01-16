@@ -1,0 +1,13 @@
+{% extends 'ShopMainBundle::layout.html.twig' %}
+
+{% block content %}
+
+<h1>{{ 'Shopping cart'|trans }}</h1>
+
+{% if cart.getProducts() %}
+    
+{% else %}
+    {{ 'Your shopping cart is empty.'|trans }} <a class="button" href="#">{{ 'Continue shopping'|trans }}</a>
+{% endif %}
+    
+{% endblock %}
