@@ -28,7 +28,7 @@ class OrderServiceTest extends TestCase
         );
                 
         $this->product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
-            'price' => 5.50
+            'price' => 5.51
         ));
         
         $this->tax = $this->getFixtureFactory()->get('ProductBundle\Entity\Tax', array(
@@ -70,25 +70,6 @@ class OrderServiceTest extends TestCase
      * @group service
      * @group order
      */
-    public function purchaseHasTotalTax()
-    {
-        $this->markTestSkipped();
-        
-        $this->cart->addProduct($this->product);
-        
-        $order = $this->service->order($this->cart);
-        
-        $this->assertMoneyEquals(
-            '2.54',
-            $order->getTotalTax()
-        );
-    }
-    
-    /**
-     * @test
-     * @group service
-     * @group order
-     */
     public function purchaseItemHasTaxAndTaxPercent()
     {
         $order = $this->service->order($this->cart);
@@ -103,14 +84,29 @@ class OrderServiceTest extends TestCase
      * @group service
      * @group order
      */
-    public function purchaseItemHasPriceWithoutTax()
+    public function purchaseItemHasPriceWithoutAndWithTax()
     {
         $order = $this->service->order($this->cart);
+        $item  = $order->getItems()->first();
         
-        $this->assertMoneyEquals(
-            '5.50',
-            $order->getItems()->first()->getPriceWithoutTax()
-        );
+        $this->assertMoneyEquals('5.51', $item->getPriceWithoutTax());
+        $this->assertMoneyEquals('6.78', $item->getPriceWithTax());
+    }
+    
+    /**
+     * @test
+     * @group service
+     * @group order
+     */
+    public function purchaseHasTotalTaxesAndPrices()
+    {
+        $this->cart->addProduct($this->product);
+        
+        $order = $this->service->order($this->cart);
+        
+        $this->assertMoneyEquals('2.54',  $order->getTotalTax());
+        $this->assertMoneyEquals('11.02', $order->getTotalWithoutTax());
+        $this->assertMoneyEquals('13.56', $order->getTotalWithTax());
     }
     
     /**
