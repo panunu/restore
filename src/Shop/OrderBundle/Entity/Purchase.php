@@ -3,7 +3,8 @@
 namespace Shop\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
-    Shop\FrameworkBundle\Entity\AbstractEntity as Entity;
+    Shop\FrameworkBundle\Entity\AbstractEntity as Entity,
+    Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="Purchase")
@@ -55,6 +56,11 @@ class Purchase extends Entity
      */
     protected $items;
     
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
+    
     public function getProducts()
     {
         if(!$this->getItems()) {
@@ -68,11 +74,15 @@ class Purchase extends Entity
     }    
     
     /**
-     * @param PurchaseItem $item
+     * @param  PurchaseItem $item
+     * @return Purchase
      */
     public function addItem(PurchaseItem $item)
     {
-        $this->items[] = $item;
+        if(!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setPurchase($this);
+        }
         
         return $this;
     }
