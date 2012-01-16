@@ -7,7 +7,7 @@
 {% if cart.getProducts() %}
     
 {% else %}
-    {{ 'Your shopping cart is empty.'|trans }} <a class="button" href="#">{{ 'Continue shopping'|trans }}</a>
+    {% include 'ShopCartBundle:Cart:empty.html.twig' %}
 {% endif %}
     
 {% endblock %}

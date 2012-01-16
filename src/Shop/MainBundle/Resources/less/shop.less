@@ -1,6 +1,6 @@
 // Parameters
 
-@font: "Oldenburg";
+@font: "Montserrat";
 
 @brown: #7f592e;
 @grey:  #7f7f7f;
@@ -36,7 +36,7 @@
 
 // Global
 
-body { cursor: default; }
+body { cursor: default; font-family: @font; }
 
 .left  { float: left;  }
 .right { float: right; }
@@ -46,6 +46,7 @@ ul { margin: 0px; }
 a.button, button, submit, input[type="submit"]
 {
     margin-top: -4px;
+    margin-bottom: 2px;
     padding:     4px 8px 4px 8px;
 
     font-size:       smaller;
@@ -67,6 +68,16 @@ a
 
     &:hover { color: #555; }
 }
+
+h1, h2, h3, h4, h5
+{
+    margin: 30px 0 50px 0;
+
+    text-transform: uppercase;
+    color: #a19a94;
+}
+
+#content img { padding: 5px 0 5px 0; }
 
 // Elements
 
