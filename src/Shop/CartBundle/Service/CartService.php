@@ -49,6 +49,22 @@ class CartService
     }
     
     /**
+     * @return Cart|null
+     */
+    public function getCart()
+    {
+        return $this->cart = $this->session->get('cart') ?: new Cart();
+    }
+    
+    /**
+     * @return boolean
+     */
+    public function hasCart()
+    {
+        return $this->session->get('cart') != null;
+    }
+    
+    /**
      * @return int
      */
     public function getNumberOfProductsInCart()
@@ -64,22 +80,6 @@ class CartService
         return array_reduce($this->getCart()->getProducts(), function($total, $product) {
             return $total += $product->getPrice();
         }, 0);
-    }
-    
-    /**
-     * @return Cart|null
-     */
-    public function getCart()
-    {
-        return $this->cart = $this->session->get('cart') ?: new Cart();
-    }
-    
-    /**
-     * @return boolean
-     */
-    public function hasCart()
-    {
-        return $this->session->get('cart') != null;
     }
     
     /**
