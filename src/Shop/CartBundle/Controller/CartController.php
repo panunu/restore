@@ -40,7 +40,7 @@ class CartController extends Controller
     }
     
     /**
-     * @return CartService
+     * @return ProductService
      */
     protected function getProductService()
     {
