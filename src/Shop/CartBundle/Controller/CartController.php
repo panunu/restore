@@ -22,6 +22,15 @@ class CartController extends Controller
         return new \Symfony\Component\HttpFoundation\Response('ok'); // TODO: Refactor, maybe JSON response?
     }
     
+    public function removeAction($product)
+    {
+        $product = $this->getProductService()->getProductById($product);
+        
+        $this->getCartService()->removeProductFromCart($product);
+        
+        return new \Symfony\Component\HttpFoundation\Response('ok'); // TODO: Refactor, maybe JSON response?
+    }
+    
     /**
      * @return CartService
      */

@@ -49,7 +49,7 @@ class CartService
     }
     
     /**
-     * @return Cart|null
+     * @return Cart
      */
     public function getCart()
     {

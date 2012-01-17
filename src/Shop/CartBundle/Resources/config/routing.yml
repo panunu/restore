@@ -5,3 +5,11 @@ cart_view:
 cart_add:
     pattern:  /ostoskori/lisaa/{product}
     defaults: { _controller: ShopCartBundle:Cart:add, _locale: fi }
+    
+cart_remove:
+    pattern:  /ostoskori/poista/{product}
+    defaults: { _controller: ShopCartBundle:Cart:remove, _locale: fi }
+    
+cart_clear:
+    pattern:  /ostoskori/tyhjenna
+    defaults: { _controller: ShopCartBundle:Cart:clear, _locale: fi }
