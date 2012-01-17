@@ -41,6 +41,9 @@ body { cursor: default; font-family: @font; }
 .left  { float: left;  }
 .right { float: right; }
 
+.text-left  { text-align: left; }
+.text-right { text-align: right; }
+
 ul { margin: 0px; }
 
 a.button, button, submit, input[type="submit"]
@@ -71,11 +74,11 @@ a
 
 h1, h2, h3, h4, h5
 {
-    margin: 30px 0 50px 0;
-
     text-transform: uppercase;
     color: #a19a94;
 }
+
+h1 { margin: 30px 0 50px 0; }
 
 #content img { padding: 5px 0 5px 0; }
 
@@ -99,9 +102,8 @@ h1, h2, h3, h4, h5
 
 #logo
 {
-    font-size:   32px;
-    //font-family: @font;
-    color:       @grey;
+    font-size: 32px;
+    color:     @grey;
 }
 
 #navigation
@@ -109,7 +111,6 @@ h1, h2, h3, h4, h5
     margin-left: -8px;
 
     font-size:   18px;
-    //font-family: @font;
     font-weight: bold;
     
     text-transform: uppercase;
@@ -128,9 +129,12 @@ h1, h2, h3, h4, h5
 
         &:hover
         {
-            background-color: white;
-        
             .box-shadow(1px 5px 5px #ddd);
         }
     }
+}
+
+#content
+{
+    margin-bottom: 20px;
 }

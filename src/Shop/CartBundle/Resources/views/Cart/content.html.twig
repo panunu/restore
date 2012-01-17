@@ -1,8 +1,28 @@
-<table>
-    {% for product in cart.getProducts %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }} &euro;</td>
-        </tr>
-    {% endfor %}
-</table>
+{% for product in cart.getProducts %}
+    <div class="sixteen columns add-bottom">
+        <img class="two columns alpha" src="/images/hanger.jpg" alt="{{ product.name }}, manufacturer" />
+        
+        <div class="five columns"><b>{{ product.name }}</b><br/>Remade<br/><br/></div>
+        
+        <div class="four columns">
+            <div class="two columns alpha">
+                à {{ product.price }} &euro;
+            </div>
+            <div class="two columns omega add-bottom">
+                <select>
+                    <option value="1">1 {{ 'pcs'|trans }}</option>
+                </select>
+            </div>
+       </div>
+        
+        <div class="three columns"><h3>6321.55 &euro;</h3></div>
+        
+        <div class="two columns omega text-right"><a href="#" class="button">{{ 'Remove'|trans }}</a></div>
+    </div>
+{% endfor %}
+    
+<div class="sixteen columns text-right">
+    <div class="nine columns alpha">&nbsp;</div>
+    <div class="two columns">{{ 'total'|trans }}</div>
+    <div class="five columns omega"><h2>13.43 &euro; {{ 'after tax'|trans }}</h2></div>
+</div>
