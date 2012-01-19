@@ -1,25 +1,23 @@
 {% for item in cart.getItems %}
     <div class="sixteen columns add-bottom">
-        <img class="two columns alpha" src="/images/hanger.jpg" alt="{{ item.product.name }}, manufacturer" />
+        <img class="two columns alpha" src="/images/hanger.jpg" alt="{{ item.product.name }}, manufacturer" />{# TODO: Replace image #}
         
-        <div class="five columns"><b>{{ item.product.name }}</b><br/><br/><br/></div>
+        <div class="five columns"><b>{{ item.product.name }}</b><br/></div>
         
         <div class="four columns">
             <div class="two columns alpha">
-                à {{ item.product.priceWithTax }} &euro;
+                à {{ item.product.priceWithTax|money }}
             </div>
             <div class="two columns omega add-bottom">
                 <select>
-                    <option value="1" {% if item.quantity == 1 %}selected="selected"{% endif %}>1 {{ 'pcs'|trans }}</option>
-                    <option value="2" {% if item.quantity == 2 %}selected="selected"{% endif %}>2 {{ 'pcs'|trans }}</option>
-                    <option value="3" {% if item.quantity == 3 %}selected="selected"{% endif %}>3 {{ 'pcs'|trans }}</option>
-                    <option value="4" {% if item.quantity == 4 %}selected="selected"{% endif %}>4 {{ 'pcs'|trans }}</option>
-                    <option value="5" {% if item.quantity == 5 %}selected="selected"{% endif %}>5 {{ 'pcs'|trans }}</option>
+                    {% for i in range(1, 10) %} {# TODO: Replace with real storage quantity #}
+                        <option value="1" {% if item.quantity == i %}selected="selected"{% endif %}>{{ i }} {{ 'pcs'|trans }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
         
-        <div class="three columns"><h3>6321.55 &euro;</h3></div>
+        <div class="three columns"><h3>{{ (item.product.priceWithTax * item.quantity)|money }}</h3></div>
         
         <div class="two columns omega text-right"><a href="#" class="button">{{ 'Remove'|trans }}</a></div>
     </div>
@@ -28,5 +26,5 @@
 <div class="sixteen columns text-right">
     <div class="nine columns alpha">&nbsp;</div>
     <div class="two columns">{{ 'total'|trans }}</div>
-    <div class="five columns omega"><h2>13.43 &euro; {{ 'after tax'|trans }}</h2></div>
+    <div class="five columns omega"><h2>{{ '13.43'|money }} {{ 'after tax'|trans }}</h2></div>
 </div>

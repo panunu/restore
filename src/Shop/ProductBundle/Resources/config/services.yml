@@ -19,4 +19,7 @@ services:
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
         
-    
+    money.twig.extension:
+        class: Shop\ProductBundle\Twig\Extensions\Extension\Money
+        tags:
+            -  { name: twig.extension }    
