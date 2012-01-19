@@ -88,11 +88,9 @@ class OrderService
         $withTax    = Money::create('0.00');
         
         foreach($purchase->getItems() as $item) {
-            for($i = 1; $i <= $item->getQuantity(); $i++) {
-                $tax        = $tax->plus($item->getTax());
-                $withoutTax = $withoutTax->plus($item->getPriceWithoutTax());
-                $withTax    = $withTax->plus($item->getPriceWithTax());
-            }
+            $tax        = $tax->plus($item->getTax()->times($item->getQuantity()));
+            $withoutTax = $withoutTax->plus($item->getPriceWithoutTax()->times($item->getQuantity()));
+            $withTax    = $withTax->plus(Money::create($item->getPriceWithTax())->times($item->getQuantity()));
         }
         
         $purchase->setTotalWithoutTax($withoutTax);  
