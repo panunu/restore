@@ -89,8 +89,8 @@ class OrderServiceTest extends TestCase
         $order = $this->service->order($this->cart);
         $item  = $order->getItems()->first();
         
-        $this->assertMoneyEquals('5.51', $item->getPriceWithoutTax());
-        $this->assertMoneyEquals('6.78', $item->getPriceWithTax());
+        $this->assertMoneyEquals('6.50', $item->getPriceWithoutTax());
+        $this->assertMoneyEquals('8.00', $item->getPriceWithTax());
     }
     
     /**
@@ -117,9 +117,9 @@ class OrderServiceTest extends TestCase
         
         $order = $this->service->order($this->cart);
         
-        $this->assertMoneyEquals('2.54',  $order->getTotalTax());
-        $this->assertMoneyEquals('11.02', $order->getTotalWithoutTax());
-        $this->assertMoneyEquals('13.56', $order->getTotalWithTax());
+        $this->assertMoneyEquals('3.00',  $order->getTotalTax());
+        $this->assertMoneyEquals('13.00', $order->getTotalWithoutTax());
+        $this->assertMoneyEquals('16.00', $order->getTotalWithTax());
     }    
     
     /**

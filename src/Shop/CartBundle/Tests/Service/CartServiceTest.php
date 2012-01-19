@@ -44,7 +44,7 @@ class CartServiceTest extends TestCase
         $this->service->addProductToCart($this->product);
         
         $this->assertEquals(
-            array($this->product->getId() => $this->product),
+            array($this->product),
             $this->service->getCart()->getProducts()
         );
     }

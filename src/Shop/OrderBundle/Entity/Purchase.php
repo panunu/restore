@@ -67,10 +67,10 @@ class Purchase extends Entity
             return null;
         }
         
-        return array_map(
+        return array_values(array_map(
             function($item) { return $item->getProduct(); },
             $this->items->toArray()
-        );
+        ));
     }    
     
     /**
