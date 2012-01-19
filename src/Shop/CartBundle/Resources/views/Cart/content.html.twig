@@ -1,19 +1,23 @@
-{% for product in cart.getProducts %}
+{% for item in cart.getItems %}
     <div class="sixteen columns add-bottom">
-        <img class="two columns alpha" src="/images/hanger.jpg" alt="{{ product.name }}, manufacturer" />
+        <img class="two columns alpha" src="/images/hanger.jpg" alt="{{ item.product.name }}, manufacturer" />
         
-        <div class="five columns"><b>{{ product.name }}</b><br/>Remade<br/><br/></div>
+        <div class="five columns"><b>{{ item.product.name }}</b><br/><br/><br/></div>
         
         <div class="four columns">
             <div class="two columns alpha">
-                à {{ product.price }} &euro;
+                à {{ item.product.priceWithTax }} &euro;
             </div>
             <div class="two columns omega add-bottom">
                 <select>
-                    <option value="1">1 {{ 'pcs'|trans }}</option>
+                    <option value="1" {% if item.quantity == 1 %}selected="selected"{% endif %}>1 {{ 'pcs'|trans }}</option>
+                    <option value="2" {% if item.quantity == 2 %}selected="selected"{% endif %}>2 {{ 'pcs'|trans }}</option>
+                    <option value="3" {% if item.quantity == 3 %}selected="selected"{% endif %}>3 {{ 'pcs'|trans }}</option>
+                    <option value="4" {% if item.quantity == 4 %}selected="selected"{% endif %}>4 {{ 'pcs'|trans }}</option>
+                    <option value="5" {% if item.quantity == 5 %}selected="selected"{% endif %}>5 {{ 'pcs'|trans }}</option>
                 </select>
             </div>
-       </div>
+        </div>
         
         <div class="three columns"><h3>6321.55 &euro;</h3></div>
         

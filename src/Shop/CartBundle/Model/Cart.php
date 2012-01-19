@@ -9,15 +9,19 @@ class Cart
     /**
      * @var array
      */
-    protected $products;
+    protected $items = array();
     
     /**
      * @param  Product $product 
      * @return Cart
      */
     public function addProduct(Product $product)
-    {
-        $this->products[] = $product;
+    {                
+        if(array_key_exists($product->getId(), $this->items)) {
+            $this->items[$product->getId()]->add();
+        } else {
+            $this->items[$product->getId()] = new CartItem($product);
+        }
         
         return $this;
     }
@@ -28,11 +32,23 @@ class Cart
      */
     public function removeProduct(Product $product)
     {
-        foreach($this->products as $key => $value) {
-            if($value == $product) {
-                unset($this->products[$key]);
-                return $this;
-            }
+        if(array_key_exists($product->getId(), $this->items)) {
+            $this->items[$product->getId()]->remove();
+            return $this->unsetItemIfEmpty($product->getId());
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * @param  CartItem $item
+     * @param  int      $id
+     * @return Cart 
+     */
+    protected function unsetItemIfEmpty($id)
+    {
+        if($this->items[$id]->getQuantity() < 1) {
+            unset($this->items[$id]);
         }
         
         return $this;
@@ -41,8 +57,19 @@ class Cart
     /**
      * @return array
      */
+    public function getItems()
+    {
+        return $this->items;
+    }
+    
+    /**
+     * @return array
+     */
     public function getProducts()
     {
-        return $this->products;
+        return array_values(array_map(
+            function($item) { return $item->getProduct(); },
+            $this->items
+        ));
     }
 }

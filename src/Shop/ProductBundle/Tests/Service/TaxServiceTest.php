@@ -97,19 +97,24 @@ class TaxServiceTest extends TestCase
     public function calculatesTaxForProduct()
     {
         $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
-            'price' => 19.93
+            'priceWithTax' => 20.00
         ));
         
         $tax = $this->getFixtureFactory()->get('ProductBundle\Entity\Tax', array(
-            'percent'  => 23.05,
+            'percent'  => 10.00,
             'validity' => new DateTime('2000-01-02')
         ));
         
         $this->getEntityManager()->flush();
         
         $this->assertEquals(
-            '4.59', // round(19.93 * 0.2305, 2)
-            $this->service->tax($product)->toString()
+            '1.82',
+            $this->service->getAmountOfTax($product)->toString()
+        );
+        
+        $this->assertEquals(
+            '18.18',
+            $this->service->untax($product)->toString()
         );
     }
 }

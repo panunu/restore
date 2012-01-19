@@ -86,15 +86,4 @@ class Purchase extends Entity
         
         return $this;
     }
-    
-    /**
-     * @param  array    $products
-     * @return Purchase 
-     */
-    /*public function setProducts(array $products)
-    {
-        $this->products = $products;
-        
-        return $this;
-    }*/
 }

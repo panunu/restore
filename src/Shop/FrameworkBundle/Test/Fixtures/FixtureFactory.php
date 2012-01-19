@@ -31,9 +31,9 @@ class FixtureFactory extends BaseFixtureFactory
         ));
         
         $this->defineEntity('ProductBundle\Entity\Product', array(
-            'name'  => FieldDef::sequence("Product %d"),
-            'price' => 5.00,
-            'tax'   => Tax::TYPE_GENERAL
+            'name'         => FieldDef::sequence("Product %d"),
+            'priceWithTax' => 5.00,
+            'tax'          => Tax::TYPE_GENERAL
         ));
         
         return $this;

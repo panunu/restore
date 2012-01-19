@@ -54,11 +54,23 @@ class TaxService
      * @param  Product $product 
      * @return Money
      */
-    public function tax(Product $product)
+    public function getAmountOfTax(Product $product)
     {
-        $percent = $this->getValidTax($product->getTax())->getPercent();
-        $price   = Money::create($product->getPrice());
+        $percent = $this->getValidTax($product->getTax())->getPercent() / 100;
+        $price   = Money::create($product->getPriceWithTax());
         
-        return $price->times($percent / 100)->round();
+        return $price->div(1 + ($percent))->times($percent)->round();
+    }
+    
+    /**
+     * @param  Product $product 
+     * @return Money
+     */
+    public function untax(Product $product)
+    {
+        $percent = $this->getValidTax($product->getTax())->getPercent() / 100;
+        $price   = Money::create($product->getPriceWithTax());
+        
+        return $price->div(1 + ($percent))->round();
     }
 }

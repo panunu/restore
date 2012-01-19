@@ -17,7 +17,10 @@ class CartTest extends TestCase
     {
         parent::setUp();
         
-        $this->cart = new Cart();
+        $this->product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product');
+        $this->cart    = new Cart();
+        
+        $this->getEntityManager()->flush();
     }
 
     /**
@@ -25,9 +28,9 @@ class CartTest extends TestCase
      * @group model
      * @group cart
      */
-    public function doesNotHaveProductsIfNothingAdded()
+    public function doesNotHaveItemsIfNothingAdded()
     {
-        $this->assertEmpty($this->cart->getProducts());
+        $this->assertEmpty($this->cart->getItems());
     }
     
     /**
@@ -35,11 +38,12 @@ class CartTest extends TestCase
      * @group model
      * @group cart
      */
-    public function canHaveMultipleProducts()
+    public function hasMultipleItems()
     {
-        $this->cart->addProduct(new Product())->addProduct(new Product());
+        $this->cart->addProduct($this->product)
+            ->addProduct($this->getFixtureFactory()->get('ProductBundle\Entity\Product'));
         
-        $this->assertEquals(2, count($this->cart->getProducts()));
+        $this->assertEquals(2, count($this->cart->getItems()));
     }
     
     /**
@@ -47,14 +51,48 @@ class CartTest extends TestCase
      * @group model
      * @group cart
      */
-    public function removesSingleProduct()
+    public function itemsHaveQuantityAndProduct()
     {
-        $a = new Product();
-        $b = new Product();
+        $this->cart->addProduct($this->product)->addProduct($this->product);
         
-        $this->cart->addProduct($a)->addProduct($a)->addProduct($b);
-        $this->cart->removeProduct($a);        
+        $items = $this->cart->getItems();
+        $item  = $items[$this->product->getId()];
         
-        $this->assertEquals(2, count($this->cart->getProducts()));
+        $this->assertEquals(2,              $item->getQuantity());
+        $this->assertEquals($this->product, $item->getProduct());
+    }    
+    
+    /**
+     * @test
+     * @group model
+     * @group cart
+     */
+    public function decreasesQuantityOfItem()
+    {
+        $this->cart->addProduct($this->product)
+            ->addProduct($this->product)
+            ->addProduct($this->getFixtureFactory()->get('ProductBundle\Entity\Product'));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->cart->removeProduct($this->product); 
+        
+        $items = $this->cart->getItems();
+        $item  = $items[$this->product->getId()];
+        
+        $this->assertEquals(1, $item->getQuantity());
+    }
+    
+    /**
+     * @test
+     * @group model
+     * @group cart
+     */
+    public function removesItemIfQuantityReachesZero()
+    {
+        $this->cart->addProduct($this->product);
+        $this->cart->removeProduct($this->product);
+        
+        $this->assertEmpty($this->cart->getItems());
     }
 }

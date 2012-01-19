@@ -30,9 +30,9 @@ class Product extends Entity
     /**
      * @var float
      *
-     * @ORM\Column(name="price", type="decimal", length="8", scale="2", nullable=false)
+     * @ORM\Column(name="priceWithTax", type="decimal", length="8", scale="2", nullable=false)
      */
-    protected $price;
+    protected $priceWithTax;
     
     /**
      * @var int

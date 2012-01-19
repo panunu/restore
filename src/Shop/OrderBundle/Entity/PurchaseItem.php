@@ -50,11 +50,11 @@ class PurchaseItem extends Entity
     protected $priceWithTax;
     
     /**
-     * @var Purchase
-     * 
-     * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="items")
+     * @var float
+     *
+     * @ORM\Column(name="quantity", type="integer", nullable=false)
      */
-    protected $purchase;
+    protected $quantity;
     
     /**
      * @var Product
@@ -62,6 +62,13 @@ class PurchaseItem extends Entity
      * @ORM\ManyToOne(targetEntity="Shop\ProductBundle\Entity\Product")
      */
     protected $product;
+    
+    /**
+     * @var Purchase
+     * 
+     * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="items")
+     */
+    protected $purchase;
     
     /**
      * @param Product $product 

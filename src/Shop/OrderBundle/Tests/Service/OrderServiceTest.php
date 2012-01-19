@@ -28,14 +28,14 @@ class OrderServiceTest extends TestCase
         );
                 
         $this->product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
-            'price' => 5.51
+            'priceWithTax' => 8.00
         ));
         
         $this->tax = $this->getFixtureFactory()->get('ProductBundle\Entity\Tax', array(
             'validity' => new DateTime('2000-01-02'),
             'percent'  => 23.00
         ));
-                        
+        
         $this->getEntityManager()->flush();
         
         $this->cart = new Cart();
@@ -75,7 +75,7 @@ class OrderServiceTest extends TestCase
         $order = $this->service->order($this->cart);
         $item  = $order->getItems()->first();
         
-        $this->assertMoneyEquals('1.27', $item->getTax());        
+        $this->assertMoneyEquals('1.50', $item->getTax());        
         $this->assertEquals('23.00', $item->getTaxPercent());
     }
     
@@ -98,6 +98,19 @@ class OrderServiceTest extends TestCase
      * @group service
      * @group order
      */
+    public function purchaseItemHasQuantity()
+    {
+        $order = $this->service->order($this->cart->addProduct($this->product));
+        $item  = $order->getItems()->first();
+        
+        $this->assertEquals(2, $item->getQuantity());
+    }
+    
+    /**
+     * @test
+     * @group service
+     * @group order
+     */
     public function purchaseHasTotalTaxesAndPrices()
     {
         $this->cart->addProduct($this->product);
@@ -107,7 +120,7 @@ class OrderServiceTest extends TestCase
         $this->assertMoneyEquals('2.54',  $order->getTotalTax());
         $this->assertMoneyEquals('11.02', $order->getTotalWithoutTax());
         $this->assertMoneyEquals('13.56', $order->getTotalWithTax());
-    }
+    }    
     
     /**
      * @param string $expected

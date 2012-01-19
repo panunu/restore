@@ -44,7 +44,7 @@ class OrderService
         $purchase = new Purchase();
         $purchase->setDate(new DateTime());
         
-        $this->setItemsForPurchase($cart->getProducts(), $purchase);
+        $this->setItemsForPurchase($cart->getItems(), $purchase);
         $this->setTotalsForPurchase($purchase);   
         
         $this->em->persist($purchase);
@@ -54,19 +54,21 @@ class OrderService
     }
     
     /**
-     * @param  array    $products
+     * @param  array    $items
      * @param  Purchase $purchase
      * @return OrderService 
      */
-    protected function setItemsForPurchase(array $products, Purchase $purchase)
+    protected function setItemsForPurchase(array $items, Purchase $purchase)
     {
-        foreach($products as $product) {
-            $item = new PurchaseItem($product);
+        foreach($items as $cartItem) {
+            $product = $cartItem->getProduct();
+            $item    = new PurchaseItem($product);
             
-            $item->setTax($this->taxService->tax($product));
+            $item->setQuantity($cartItem->getQuantity());
+            $item->setTax($this->taxService->getAmountOfTax($product));
             $item->setTaxPercent($this->taxService->getValidTax($product->getTax())->getPercent());
-            $item->setPriceWithoutTax($product->getPrice());
-            $item->setPriceWithTax($item->getTax()->plus($item->getPriceWithoutTax()));
+            $item->setPriceWithoutTax($this->taxService->untax($product));
+            $item->setPriceWithTax($product->getPriceWithTax());
             
             $purchase->addItem($item);
             $this->em->persist($item);
