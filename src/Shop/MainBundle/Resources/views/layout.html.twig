@@ -11,7 +11,7 @@
                     {{ 'Checkout'|trans }}
                 </a>
 
-                <a href="#" class="shopping-cart right">
+                <a href="{{ url('cart_view') }}" class="shopping-cart right">
                     {{ cart().getSize() }}
                     {% if cart().getSize() != 1 %}{{ 'products'|trans }}{% else %}{{ 'product'|trans }}{% endif %}
                 </a>
