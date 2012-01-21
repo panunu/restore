@@ -2,7 +2,8 @@
 
 namespace Shop\CartBundle\Model;
 
-use Shop\ProductBundle\Entity\Product;
+use Shop\ProductBundle\Entity\Product,
+    Shop\MainBundle\Model\Money;
 
 class Cart
 {
@@ -41,17 +42,19 @@ class Cart
     }
     
     /**
-     * @param  CartItem $item
-     * @param  int      $id
-     * @return Cart 
+     * @param  Product $product
+     * @param  int     $quantity 
+     * @return Cart
      */
-    protected function unsetItemIfEmpty($id)
+    public function setProduct(Product $product, $quantity)
     {
-        if($this->items[$id]->getQuantity() < 1) {
-            unset($this->items[$id]);
+        if(array_key_exists($product->getId(), $this->items)) {
+            $this->items[$product->getId()]->setQuantity($quantity);
+        } else {
+            $this->items[$product->getId()] = new CartItem($product, $quantity);
         }
         
-        return $this;
+        return $this->unsetItemIfEmpty($product->getId());
     }
     
     /**
@@ -72,4 +75,31 @@ class Cart
             $this->items
         ));
     }
+    
+    /**
+     * @return float
+     */
+    public function getTotalPrice()
+    {
+        return array_reduce($this->items, function($total, $item) {
+            return $total += Money::create($item->getProduct()->getPriceWithTax())
+                ->times($item->getQuantity())->toString();
+        });
+    }
+    
+    /**
+     * @param  CartItem $item
+     * @param  int      $id
+     * @return Cart 
+     */
+    protected function unsetItemIfEmpty($id)
+    {
+        if($this->items[$id]->getQuantity() < 1) {
+            unset($this->items[$id]);
+        }
+        
+        return $this;
+    }
+    
+    
 }
