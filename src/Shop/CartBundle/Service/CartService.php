@@ -49,6 +49,28 @@ class CartService
     }
     
     /**
+     * @param  Product $product
+     * @param  int     $quantity
+     * @return CartService 
+     */
+    public function editProductInCart(Product $product, $quantity)
+    {
+        $this->getCart()->setProduct($product, (int) $quantity);
+        
+        return $this->flush();
+    }
+    
+    /**
+     * @return CartService
+     */
+    public function clearCart()
+    {
+        $this->cart = new Cart();
+        
+        return $this->flush();
+    }
+    
+    /**
      * @return Cart
      */
     public function getCart()

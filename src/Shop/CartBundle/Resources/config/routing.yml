@@ -10,6 +10,10 @@ cart_remove:
     pattern:  /ostoskori/poista/{product}
     defaults: { _controller: ShopCartBundle:Cart:remove, _locale: fi }
     
+cart_edit:
+    pattern:  /ostoskori/muokkaa/{product}/{quantity}
+    defaults: { _controller: ShopCartBundle:Cart:edit, _locale: fi }
+    
 cart_clear:
     pattern:  /ostoskori/tyhjenna
     defaults: { _controller: ShopCartBundle:Cart:clear, _locale: fi }

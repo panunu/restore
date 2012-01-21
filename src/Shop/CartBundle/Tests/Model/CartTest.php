@@ -101,6 +101,25 @@ class CartTest extends TestCase
      * @group model
      * @group cart
      */
+    public function countsTotalItemQuantity()
+    {
+        $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
+            'priceWithTax' => '8.00'
+        ));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->cart->addProduct($this->product)->addProduct($this->product)
+            ->addProduct($product);
+        
+        $this->assertEquals(3, $this->cart->getSize());
+    }
+    
+    /**
+     * @test
+     * @group model
+     * @group cart
+     */
     public function countsTotalPriceOfCart()
     {
         $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(

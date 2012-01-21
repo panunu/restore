@@ -2,3 +2,9 @@ services:
     shop_cart.service.cart:
         class:     Shop\CartBundle\Service\CartService
         arguments: ["@session"]
+        
+    cart.twig.extension:
+        class:     Shop\CartBundle\Twig\Extensions\Extension\Cart
+        arguments: ["@shop_cart.service.cart"]
+        tags:
+            -  { name: twig.extension }

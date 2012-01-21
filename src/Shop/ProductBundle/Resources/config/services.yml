@@ -22,4 +22,4 @@ services:
     money.twig.extension:
         class: Shop\ProductBundle\Twig\Extensions\Extension\Money
         tags:
-            -  { name: twig.extension }    
+            -  { name: twig.extension }

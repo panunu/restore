@@ -11,11 +11,12 @@
                     {{ 'Checkout'|trans }}
                 </a>
 
-                <a href="#" class="shopping-cart right" title="Lot of a productos">
-                    3 {{ 'products'|trans }}
+                <a href="#" class="shopping-cart right">
+                    {{ cart().getSize() }}
+                    {% if cart().getSize() != 1 %}{{ 'products'|trans }}{% else %}{{ 'product'|trans }}{% endif %}
                 </a>
                     
-                <a href="{{ url('cart_view') }}" class="shopping-cart-icon right" title="Lot of a productos">
+                <a href="{{ url('cart_view') }}" class="shopping-cart-icon right" title="{{ 'Shopping cart'|trans }}">
                     <img src="/images/cart.gif" alt="{{ 'Shopping cart'|trans }}" />
                 </a>
             </div>

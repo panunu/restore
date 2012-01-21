@@ -88,6 +88,16 @@ class Cart
     }
     
     /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return array_reduce($this->items, function($size, $item) {
+            return $size += $item->getQuantity();
+        }) ?: 0;
+    }
+    
+    /**
      * @param  CartItem $item
      * @param  int      $id
      * @return Cart 
