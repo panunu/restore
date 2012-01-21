@@ -11,7 +11,7 @@ cart_remove:
     defaults: { _controller: ShopCartBundle:Cart:remove, _locale: fi }
     
 cart_edit:
-    pattern:  /ostoskori/muokkaa/{product}/{quantity}
+    pattern:  /ostoskori/muokkaa/{product}/kpl/{quantity}
     defaults: { _controller: ShopCartBundle:Cart:edit, _locale: fi }
     
 cart_clear:
