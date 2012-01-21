@@ -3,5 +3,12 @@
 {% block content %}
     <h1>{{ 'Products'|trans }}</h1>
 
-    asd
+    {% for product in products %}
+        <div class="four columns add-bottom product">
+            <img src="/images/hanger.jpg" class="four columns" /><br/>
+            {{ product.name }}
+            <span class="right"><b>{{ product.priceWithTax|money }}</b></span>
+        </div>
+    {% endfor %}
+        
 {% endblock %}

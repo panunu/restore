@@ -9,7 +9,7 @@ class ProductController extends Controller
     public function listAction()
     {
         return $this->render('ShopProductBundle:Product:list.html.twig', array(
-            
+            'products' => $this->getProductService()->getAllProducts()
         ));
     }
     
