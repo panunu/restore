@@ -1,0 +1,3 @@
+product_list:
+    pattern:  /tuotteet
+    defaults: { _controller: ShopProductBundle:Product:list, _locale: fi }

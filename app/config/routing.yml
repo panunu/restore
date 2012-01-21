@@ -1,2 +1,5 @@
 TtkCartBundle:
     resource: "@ShopCartBundle/Resources/config/routing.yml"
+    
+TtkProductBundle:
+    resource: "@ShopProductBundle/Resources/config/routing.yml"
