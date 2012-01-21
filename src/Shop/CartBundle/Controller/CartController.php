@@ -9,7 +9,7 @@ class CartController extends Controller
     public function viewAction()
     {
         return $this->render('ShopCartBundle:Cart:view.html.twig', array(
-            'cart' => $this->getCartService()->getCart() // TODO: Transfer into Model that contains totals etc.
+            'cart'  => $this->getCartService()->getCart()
         ));
     }
     

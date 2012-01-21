@@ -1,3 +1,5 @@
+{% set total = 0 %}
+
 {% for item in cart.getItems %}
     <div class="sixteen columns add-bottom">
         <img class="two columns alpha" src="/images/hanger.jpg" alt="{{ item.product.name }}, manufacturer" />{# TODO: Replace image #}
@@ -26,5 +28,5 @@
 <div class="sixteen columns text-right">
     <div class="nine columns alpha">&nbsp;</div>
     <div class="two columns">{{ 'total'|trans }}</div>
-    <div class="five columns omega"><h2>{{ '13.43'|money }} {{ 'after tax'|trans }}</h2></div>
+    <div class="five columns omega"><h2>{{ cart.getTotalPrice|money }} {{ 'after tax'|trans }}</h2></div>
 </div>
