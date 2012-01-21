@@ -68,9 +68,8 @@ class TaxService
      */
     public function untax(Product $product)
     {
-        $percent = $this->getValidTax($product->getTax())->getPercent() / 100;
-        $price   = Money::create($product->getPriceWithTax());
+        $price = Money::create($product->getPriceWithTax());
         
-        return $price->div(1 + ($percent))->round();
+        return $price->minus($this->getAmountOfTax($product))->round();
     }
 }
