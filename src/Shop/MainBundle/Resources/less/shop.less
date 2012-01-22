@@ -41,8 +41,11 @@ body { cursor: default; font-family: @font; }
 .left  { float: left;  }
 .right { float: right; }
 
-.text-left  { text-align: left; }
-.text-right { text-align: right; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+.text-center { text-align: center; }
+
+.nowrap { white-space: nowrap; }
 
 ul { margin: 0px; }
 
@@ -57,6 +60,7 @@ a.button, button, submit, input[type="submit"]
     text-decoration: none;
     color:           white;
     text-shadow:     0px 1px 2px #333;
+    white-space:     nowrap;
 
     &:hover { color: white; text-shadow: 0px 1px 2px #666; .gradient-vertical(#a19a94, #8c847c); }
 
@@ -141,3 +145,8 @@ h1 { margin: 30px 0 50px 0; }
 
 // Single elements
 
+.product
+{
+    &:nth-child(4n-2) { margin-left:  0px; }
+    &:nth-child(4n+1) { margin-right: 0px; }
+}
