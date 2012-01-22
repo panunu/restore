@@ -1,15 +1,15 @@
 <?php
 
-namespace Shop\ProductBundle\Entity;
+namespace Shop\BrandBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
     Shop\FrameworkBundle\Entity\AbstractEntity as Entity;
 
 /**
- * @ORM\Table(name="Product")
+ * @ORM\Table(name="Brand")
  * @ORM\Entity
  */
-class Product extends Entity
+class Brand extends Entity
 {
     /**
      * @var integer
@@ -26,18 +26,4 @@ class Product extends Entity
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
     protected $name;
-    
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="priceWithTax", type="decimal", length="8", scale="2", nullable=false)
-     */
-    protected $priceWithTax;
-    
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="tax", type="integer", length="2", nullable=false)
-     */
-    protected $tax;
 }
