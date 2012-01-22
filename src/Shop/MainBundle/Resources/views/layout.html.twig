@@ -12,8 +12,7 @@
                 </a>
 
                 <a href="{{ url('cart_view') }}" class="shopping-cart right">
-                    {{ cart().getSize() }}
-                    {% if cart().getSize() != 1 %}{{ 'products'|trans }}{% else %}{{ 'product'|trans }}{% endif %}
+                    {{ cart().getSize() }}&nbsp;{% if cart().getSize() != 1 %}{{ 'products'|trans }}{% else %}{{ 'product'|trans }}{% endif %}
                 </a>
                     
                 <a href="{{ url('cart_view') }}" class="shopping-cart-icon right" title="{{ 'Shopping cart'|trans }}">
@@ -25,15 +24,15 @@
         
     <div class="container">
         <header class="sixteen columns clearfix">
-            <div id="logo" class="three columns alpha add-bottom">
+            <div id="logo" class="four columns alpha add-bottom">
                 reshop
             </div>
                 
-            <menu id="navigation" class="thirteen columns omega add-bottom">
+            <menu id="navigation" class="twelve columns omega add-bottom">
                 <ul class="right">
-                    <li class="columns alpha"><a href="#">{{ 'Products'|trans }}</a></li>
-                    <li class="columns"><a href="#">{{ 'Companies'|trans }}</a></li>
-                    <li class="columns omega"><a href="#">{{ 'About'|trans }}</a></li>
+                    <li class="column"><a href="{{ url('product_list') }}">{{ 'Products'|trans }}</a></li>
+                    <li class="column"><a href="#">{{ 'Companies'|trans }}</a></li>
+                    <li class="column"><a href="#">{{ 'About'|trans }}</a></li>
                 </ul>
             </menu>
         </header>
