@@ -1,9 +1,12 @@
 // Parameters
 
 @font: "Montserrat";
+@size: 14px;
 
 @brown: #7f592e;
+@warm:  #a19a94;
 @grey:  #7f7f7f;
+@black: #444;
 
 // Functions 
 
@@ -36,7 +39,7 @@
 
 // Global
 
-body { cursor: default; font-family: @font; }
+body { cursor: default; font-family: @font; font-size: @size; }
 
 .left  { float: left;  }
 .right { float: right; }
@@ -45,7 +48,14 @@ body { cursor: default; font-family: @font; }
 .text-right  { text-align: right; }
 .text-center { text-align: center; }
 
+.smaller { font-size: smaller; }
+.larger  { font-size: larger; }
+
+.default { text-transform: inherit; text-decoration: inherit; font-size: inherit; color: inherit; margin: inherit; padding: inherit; }
+
 .nowrap { white-space: nowrap; }
+
+strong { font-size: 16px; font-weight: bold; color: @warm; }
 
 ul { margin: 0px; }
 
@@ -62,16 +72,16 @@ a.button, button, submit, input[type="submit"]
     text-shadow:     0px 1px 2px #333;
     white-space:     nowrap;
 
-    &:hover { color: white; text-shadow: 0px 1px 2px #666; .gradient-vertical(#a19a94, #8c847c); }
+    &:hover { color: white; text-shadow: 0px 1px 2px #666; .gradient-vertical(@warm, #8c847c); }
 
-    .gradient-vertical(#a19a94, #8c847c);
+    .gradient-vertical(@warm, #8c847c);
     .box-shadow(0px 2px 2px #ddd);
     .rounded(2px);
 }
 
 a
 {
-    color: #7f7f7f;
+    color: @grey;
 
     &:hover { color: #555; }
 }
@@ -79,7 +89,7 @@ a
 h1, h2, h3, h4, h5
 {
     text-transform: uppercase;
-    color: #a19a94;
+    color: @warm;
 }
 
 h1 { margin: 30px 0 50px 0; }
@@ -145,8 +155,18 @@ h1 { margin: 30px 0 50px 0; }
 
 // Single elements
 
-.product
+#filter
 {
-    &:nth-child(4n-2) { margin-left:  0px; }
-    &:nth-child(4n+1) { margin-right: 0px; }
+    padding: 20px;
+
+    background-color: #ececeb;
+}
+
+#product-list
+{
+    div.product
+    {
+        &:nth-child(4n+1) { margin-left:  0px; }
+        &:nth-child(4n)   { margin-right: 0px; }
+    }
 }

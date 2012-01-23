@@ -40,4 +40,11 @@ class Product extends Entity
      * @ORM\Column(name="tax", type="integer", length="2", nullable=false)
      */
     protected $tax;
+    
+    /**
+     * @var Brand
+     * 
+     * @ORM\ManyToOne(targetEntity="Shop\BrandBundle\Entity\Brand")
+     */
+    protected $brand;
 }

@@ -197,3 +197,4 @@
 	.add-bottom { margin-bottom: 20px !important; }
 
 
+hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
