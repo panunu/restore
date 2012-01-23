@@ -2,16 +2,26 @@
 
 {% block content %}
     <h1>{{ 'Products'|trans }}</h1>
+    
+    {% include 'ShopProductBundle:Product:filter.html.twig' with { 'products': products } %}
 
-    {% for product in products %}
-        <div class="four columns add-bottom product">
-            <img src="/images/hanger.jpg" class="four columns alpha omega" /><br/>
-            
-            <div class="four columns alpha omega">
-                <span class="left">{{ product.name }}</span>                
-                <span class="right"><b>{{ product.priceWithTax|money }}</b></span>
+    <div id="product-list" class="sixteen columns alpha omega">
+        {% for product in products %}
+            <div class="four columns add-bottom product">
+                <a href="#">
+                    <img src="/images/hanger.jpg" class="four columns alpha omega" />
+                </a>
+
+                <div class="four columns alpha omega">
+                    <a href="#" class="default"><h3 class="default">{{ product.name }}</h3></a>
+                </div>
+
+                <div class="four columns alpha omega">
+                    <a href="#" class="default"><small class="left">{{ product.brand.name }}</small></a>
+                    <strong class="right">{{ product.priceWithTax|money }}</strong>
+                </div>
             </div>
-        </div>
     {% endfor %}
+    </div>
         
 {% endblock %}
