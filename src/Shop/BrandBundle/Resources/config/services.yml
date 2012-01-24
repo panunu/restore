@@ -1,0 +1,10 @@
+services:
+    shop_brand.service.brand:
+        class:     Shop\brandBundle\Service\brandService
+        arguments: ["@doctrine.orm.entity_manager", "@shop_brand.repository.brand"]
+  
+    shop_brand.repository.brand:
+        class:           Shop\BrandBundle\Repository\BrandRepository
+        arguments:       [Shop\BrandBundle\Entity\Brand]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
