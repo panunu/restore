@@ -67,3 +67,6 @@
 
 [xi-decimal]
     git=git://github.com/xi-project/xi-decimal.git
+
+[DoctrineExtensions]
+    git=git://github.com/l3pp4rd/DoctrineExtensions.git

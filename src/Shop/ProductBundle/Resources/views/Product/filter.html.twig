@@ -16,7 +16,9 @@
     <ul id="category-list" class="twelve columns omega">
         {% for category in categories %}
             <li class="category half-bottom left">
-                <h2 class="default"><a href="#" class="default">{{ category.name }}</a></h2>
+                <h2 class="default">
+                    <a href="/tuotteet/{{ category.slug }}" data-slug="{{ category.slug }}" class="default">{{ category.name }}</a>
+                </h2>
             </li>
         {% endfor %}
     </ul>

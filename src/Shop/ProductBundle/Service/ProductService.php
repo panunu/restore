@@ -45,4 +45,17 @@ class ProductService
     {
         return $this->repository->findAll();
     }
+    
+    /**
+     * @param  string $brands
+     * @param  string $categories 
+     * @return array
+     */
+    public function getFilteredProducts($brands, $categories)
+    {
+        $brands     = explode('+', $brands);
+        $categories = $categories ? explode('+', $categories) : array();
+        
+        return $this->repository->findByBrandsAndCategories($brands, $categories);
+    }
 }

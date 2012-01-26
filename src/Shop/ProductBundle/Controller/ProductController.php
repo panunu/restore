@@ -6,19 +6,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ProductController extends Controller
 {
-    public function listAction()
+    public function indexAction()
     {
-        return $this->render('ShopProductBundle:Product:list.html.twig', array(
+        return $this->render('ShopProductBundle:Product:index.html.twig', array(
             'products'   => $this->getProductService()->getAllProducts(),
             'categories' => $this->getCategoryService()->getVisibleCategories(),
             'brands'     => $this->getBrandService()->getAllBrands(),
         ));
     }
     
+    public function listAction()
+    {
+        return $this->render('ShopProductBundle:Product:list.html.twig', array(
+            'products' => $this->getProductService()->getFilteredProducts(
+                $this->getRequest()->get('brand'),
+                $this->getRequest()->get('category')
+            )
+        ));
+    }
+    
     public function viewAction()
     {
         return $this->render('ShopCartBundle:Cart:view.html.twig', array(
-            'cart'  => $this->getCartService()->getCart()
+            'cart' => $this->getCartService()->getCart()
         ));
     }
         

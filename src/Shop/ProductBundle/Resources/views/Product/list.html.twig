@@ -1,24 +1,19 @@
-{% extends 'ShopMainBundle::layout.html.twig' %}
+{% for product in products %}
+    <div class="four columns add-bottom product">
+        <a href="#">
+            <img src="/images/hanger.jpg" class="four columns alpha omega" />
+        </a>
 
-{% block content %}
-    <!--<h1>{{ 'Products'|trans }}</h1>-->
-    
-    {% include 'ShopProductBundle:Product:filter.html.twig' with { 'products': products } %}
-
-    <div id="product-list" class="sixteen columns alpha omega">
-        {% for product in products %}
-            <div class="four columns add-bottom product">
-                <a href="#">
-                    <img src="/images/hanger.jpg" class="four columns alpha omega" />
-                </a>
-
-                <div class="four columns alpha omega">
-                    <h3 class="default"><a href="#" class="default">{{ product.name }}</a></h3>
-                    <a href="#" class="default"><small class="left">{{ product.brand.name }}</small></a>
-                    <strong class="right">{{ product.priceWithTax|money }}</strong>
-                </div>
-            </div>
-    {% endfor %}
+        <div class="four columns alpha omega">
+            <h3 class="default"><a href="#" class="default">{{ product.name }}</a></h3>
+            <a href="#" class="default"><small class="left">{{ product.brand.name }}</small></a>
+            <strong class="right">{{ product.priceWithTax|money }}</strong>
+        </div>
     </div>
-        
-{% endblock %}
+{% else %}
+    <div class="three columns alpha">&nbsp;</div>
+
+    <div class="thirteen columns omega">
+        {{ 'No products found for current criteria.'|trans }}
+    </div>
+{% endfor %}
