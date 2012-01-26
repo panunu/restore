@@ -1,9 +1,23 @@
 <nav id="filter" class="sixteen columns alpha omega add-bottom clearfix">
-    <div class="four columns alpha"><a href="#" class="button">{{ 'All brands'|trans }}</a></div>
-    <div class="twelve columns omega">-</div>
+    <div class="three columns alpha"><a href="#" class="button">{{ 'All brands'|trans }}</a></div>
+    <ul id="brand-list" class="twelve columns omega">
+        {% for brand in brands %}
+            <li class="two columns brand alpha omega half-bottom">
+                <a href="#">
+                    <img src="/images/hanger.jpg" alt="{{ brand.name }}" title="{{ brand.name }}" class="two columns alpha omega" />
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
     
     <div class="sixteen columns clearfix">&nbsp;</div>
 
-    <div class="four columns alpha"><a href="#" class="button">{{ 'All categories'|trans }}</a></div>
-    <div class="twelve columns omega">-</div>
+    <div class="three columns alpha"><a href="#" class="button">{{ 'All categories'|trans }}</a></div>
+    {#<div id="category-list" class="twelve columns omega">
+        {% for category in categories %}
+            <div class="two columns brand alpha omega">
+                <h2 class="default">{{ category.name }}</h2>
+            </div>
+        {% endfor %}
+    </div>#}
 </nav>
