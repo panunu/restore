@@ -47,4 +47,11 @@ class Product extends Entity
      * @ORM\ManyToOne(targetEntity="Shop\BrandBundle\Entity\Brand")
      */
     protected $brand;
+    
+    /**
+     * @var Category
+     * 
+     * @ORM\ManyToOne(targetEntity="Shop\ProductBundle\Entity\Category")
+     */
+    protected $category;
 }
