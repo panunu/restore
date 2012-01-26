@@ -3,6 +3,10 @@ services:
         class:     Shop\ProductBundle\Service\ProductService
         arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.product"]
         
+    shop_product.service.category:
+        class:     Shop\ProductBundle\Service\CategoryService
+        arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.category"]
+        
     shop_product.service.tax:
         class:     Shop\ProductBundle\Service\TaxService
         arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.tax"]
@@ -10,6 +14,12 @@ services:
     shop_product.repository.product:
         class:           Shop\ProductBundle\Repository\ProductRepository
         arguments:       [Shop\ProductBundle\Entity\Product]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+        
+    shop_product.repository.category:
+        class:           Shop\ProductBundle\Repository\CategoryRepository
+        arguments:       [Shop\ProductBundle\Entity\Category]
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
        

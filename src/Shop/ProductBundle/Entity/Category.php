@@ -26,4 +26,11 @@ class Category extends Entity
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
     protected $name;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visible", type="boolean", nullable=false)
+     */
+    protected $visible;
 }

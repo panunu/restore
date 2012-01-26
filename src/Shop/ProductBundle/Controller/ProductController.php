@@ -9,8 +9,9 @@ class ProductController extends Controller
     public function listAction()
     {
         return $this->render('ShopProductBundle:Product:list.html.twig', array(
-            'products' => $this->getProductService()->getAllProducts(),
-            'brands'   => $this->getBrandService()->getAllBrands(),
+            'products'   => $this->getProductService()->getAllProducts(),
+            'categories' => $this->getCategoryService()->getVisibleCategories(),
+            'brands'     => $this->getBrandService()->getAllBrands(),
         ));
     }
     
@@ -27,6 +28,14 @@ class ProductController extends Controller
     protected function getProductService()
     {
         return $this->get('shop_product.service.product');
+    }
+    
+    /**
+     * @return CategoryService
+     */
+    protected function getCategoryService()
+    {
+        return $this->get('shop_product.service.category');
     }
     
     /**
