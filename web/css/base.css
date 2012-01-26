@@ -36,7 +36,9 @@
 	body {
 		line-height: 1; }
 	ol, ul {
-		list-style: none; }
+		list-style: none; margin: none; padding: none; }
+        li {
+                list-style-type: none; }
 	blockquote, q {
 		quotes: none; }
 	blockquote:before, blockquote:after,
@@ -57,6 +59,8 @@
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
  }
+ 
+        hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
 
 /* #Images
 ================================================== */
@@ -195,6 +199,3 @@
 	.remove-bottom { margin-bottom: 0 !important; }
 	.half-bottom { margin-bottom: 10px !important; }
 	.add-bottom { margin-bottom: 20px !important; }
-
-
-hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
