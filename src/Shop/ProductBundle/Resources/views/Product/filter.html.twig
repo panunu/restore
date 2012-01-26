@@ -1,5 +1,5 @@
-<nav id="filter" class="sixteen columns alpha omega add-bottom clearfix">
-    <div class="three columns alpha half-bottom"><a href="#" class="button">{{ 'All brands'|trans }}</a></div>
+<nav id="filter" class="sixteen columns alpha omega add-bottom clearfix" style="z-index: 1;">
+    <div class="three columns alpha half-bottom left"><a href="#" class="button">{{ 'All brands'|trans }}</a></div>
     <ul id="brand-list" class="twelve columns omega clearfix">
         {% for brand in brands %}
             <li class="brand half-bottom left">
@@ -10,9 +10,9 @@
         {% endfor %}
     </ul>
     
-    <div class="sixteen columns clearfix">&nbsp;</div>
+    <div class="sixteen columns clearfix left">&nbsp;</div>
 
-    <div class="three columns alpha add-bottom clearfix"><a href="#" class="button">{{ 'All categories'|trans }}</a></div>
+    <div class="three columns alpha add-bottom clearfix left"><a href="#" class="button">{{ 'All categories'|trans }}</a></div>
     <ul id="category-list" class="twelve columns omega">
         {% for category in categories %}
             <li class="category half-bottom left">
