@@ -5,6 +5,7 @@ $(document).ready ->
     
     $('#filter a').live 'click', (e) ->
         e.preventDefault()
+        $(this).addClass 'active'
 
         $.get '/app_dev.php/tuotteet/suodata', { category: $(this).data 'slug' }, (data) ->
             $('#product-list').fadeOut 500, ->
