@@ -30,15 +30,15 @@ $(document).ready ->
     
     # Refresh product list
     refresh = (data) ->
-        $('#product-list').fadeOut 500, ->
+        $('#product-list').fadeOut 250, ->
             $('#product-list').html data
-            $('#product-list').fadeIn 500
+            $('#product-list').fadeIn 250
             return false
                  
     # Deselected filter behaviour
     $('.deselected').live 'mouseout', (e) -> $(this).removeClass 'deselected'
     
-    # Show all categories and brands
+    # TODO: Show all categories and brands
     
     # Toggle filter visibility
     $('#filter-toggle').live 'click', ->
