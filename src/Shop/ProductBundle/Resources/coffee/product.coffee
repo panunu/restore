@@ -8,10 +8,10 @@ $(document).ready ->
     # Filter by brands and categories
     $('#filter .brand a, #filter .category a').live 'click', ->
         $link = $(this).parents('.brand, .category').toggleClass 'active'
-        if not $link.hasClass 'active' then $link.addClass 'deselected'
+        if not $link.hasClass 'active' then $link.addClass 'deselected' else $link.removeClass 'deselected'
         filter()
         return false
-                
+
     # Filter products
     filter = ->
         separator  = '+'
