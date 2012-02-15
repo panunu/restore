@@ -1,7 +1,3 @@
-product_index:
-    pattern:  /tuotteet
-    defaults: { _controller: ShopProductBundle:Product:index, _locale: fi }
-
-product_list:
-    pattern:  /tuotteet/suodata
-    defaults: { _controller: ShopProductBundle:Product:list, _locale: fi }
+product:
+    resource: "@ShopProductBundle/Controller"
+    type:     annotation

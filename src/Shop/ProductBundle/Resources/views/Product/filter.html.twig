@@ -3,7 +3,7 @@
     <ul id="brand-list" class="twelve columns omega clearfix">
         {% for brand in brands %}
             <li class="brand half-bottom left">
-                <a href="#">
+                <a href="#" data-slug="{{ brand.slug }}">
                     <img src="/images/hanger.jpg" alt="{{ brand.name }}" title="{{ brand.name }}" class="brand-image" />
                 </a>
             </li>
@@ -12,7 +12,12 @@
     
     <div class="sixteen columns clearfix left">&nbsp;</div>
 
-    <div class="three columns alpha add-bottom clearfix left"><a href="#" class="button">{{ 'All categories'|trans }}</a></div>
+    <div class="three columns alpha add-bottom clearfix left">
+        <a href="#" class="button show-all-categories">
+            {{ 'All categories'|trans }}
+        </a>
+    </div>
+    
     <ul id="category-list" class="twelve columns omega">
         {% for category in categories %}
             <li class="category half-bottom left">

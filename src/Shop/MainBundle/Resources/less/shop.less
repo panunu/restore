@@ -175,12 +175,12 @@ h1 { margin: 30px 0 50px 0; }
             width: 100px;
             height: 45px;
 
-            .brand-image
-            {
-                max-width: 100px;
-                max-height: 45px;
+            opacity: 0.6;
 
-            }
+            &.active { opacity: 1.0; }
+            &:hover  { opacity: 1.0; &.deselected { opacity: 0.6; } }
+            
+            .brand-image { max-width: 100px; max-height: 45px; }
         }
     }
 
@@ -193,7 +193,8 @@ h1 { margin: 30px 0 50px 0; }
         {
             margin-right: 10px;
 
-            .active { color: @hover; }
+            &.active     { color: @hover; }
+            &.deselected { a { &:hover { color: @warm; } } }
         }
     }
 }

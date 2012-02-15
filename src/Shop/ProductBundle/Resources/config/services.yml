@@ -1,7 +1,7 @@
 services:
     shop_product.service.product:
         class:     Shop\ProductBundle\Service\ProductService
-        arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.product"]
+        arguments: ["@doctrine.orm.entity_manager", "@shop_product.repository.product", "@knp_paginator"]
         
     shop_product.service.category:
         class:     Shop\ProductBundle\Service\CategoryService

@@ -1,8 +1,6 @@
 {% extends 'ShopMainBundle::layout.html.twig' %}
 
-{% block content %}
-    <!--<h1>{{ 'Products'|trans }}</h1>-->
-    
+{% block content %}    
     {% include 'ShopProductBundle:Product:filter.html.twig' %}
 
     <div id="product-list" class="sixteen columns alpha omega">        

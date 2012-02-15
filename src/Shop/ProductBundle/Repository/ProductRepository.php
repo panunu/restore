@@ -15,14 +15,30 @@ class ProductRepository extends Repository
      */
     public function findByBrandsAndCategories(array $brands, array $categories)
     {
-        $qb = $this->createBaseQueryBuilder();
+        return $this->getQueryForFindByBrandsAndCategories($brands, $categories)
+            ->getResult();
+    }
+    
+    /**
+     * @param  array $brands
+     * @param  array $categories 
+     * @return array
+     */
+    public function getQueryForFindByBrandsAndCategories(array $brands, array $categories)
+    {
+        $qb = $this->createBaseQueryBuilder();        
+         
+        if(count($brands)) {
+            $qb->join('product.brand', 'brand', Expr\Join::WITH, 'brand.slug IN(:brands)')
+               ->setParameter('brands', $brands);
+        }
                 
         if(count($categories)) {
             $qb->join('product.category', 'category', Expr\Join::WITH, 'category.slug IN(:categories)')
                ->setParameter('categories', $categories);
         }
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery();
     }
     
     /**

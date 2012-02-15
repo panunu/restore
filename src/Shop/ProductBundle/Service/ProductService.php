@@ -5,7 +5,8 @@ namespace Shop\ProductBundle\Service;
 use \Doctrine\ORM\EntityManager,
     Shop\ProductBundle\Entity\Product,
     \DateTime,
-    \Doctrine\ORM\EntityRepository;
+    \Doctrine\ORM\EntityRepository,
+    Knp\Component\Pager\Paginator;
 
 class ProductService
 {
@@ -23,10 +24,12 @@ class ProductService
      * @param EntityManager    $em
      * @param EntityRepository $repository
      */
-    public function __construct(EntityManager $em, EntityRepository $repository)
+    public function __construct(EntityManager $em, EntityRepository $repository,
+        Paginator $paginator)
     {
         $this->em         = $em;
         $this->repository = $repository;
+        $this->paginator  = $paginator;
     }
     
     /**
@@ -49,13 +52,18 @@ class ProductService
     /**
      * @param  string $brands
      * @param  string $categories 
+     * @param  int    $page = 1
      * @return array
      */
-    public function getFilteredProducts($brands, $categories)
+    public function getFilteredProductPaginator($brands, $categories, $page = 1)
     {
-        $brands     = explode('+', $brands);
-        $categories = $categories ? explode('+', $categories) : array();
+        $brands     = $brands     == '+' ? array() : explode(' ', $brands);
+        $categories = $categories == '+' ? array() : explode(' ', $categories);
         
-        return $this->repository->findByBrandsAndCategories($brands, $categories);
+        return $this->paginator->paginate(
+            $this->repository->getQueryForFindByBrandsAndCategories($brands, $categories),
+            $page,
+            $limit = 4
+        );
     }
 }

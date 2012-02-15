@@ -17,3 +17,7 @@
         {{ 'No products found for current criteria.'|trans }}
     </div>
 {% endfor %}
+    
+<nav id="paginator">
+    {{ products.render()|raw }}
+</nav>

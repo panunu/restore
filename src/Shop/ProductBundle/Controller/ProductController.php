@@ -2,34 +2,37 @@
 
 namespace Shop\ProductBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class ProductController extends Controller
 {
-    public function indexAction()
+    /**
+     * @Route("/tuotteet",                                     name="product_index")
+     * @Route("/tuotteet/merkki/{brand}/kategoria/{category}", name="product_filter_both")
+     * @Route("/tuotteet/merkki/{brand}",                      name="product_filter_brand")
+     * @Route("/tuotteet/kategoria/{category}",                name="product_filter_category")
+     */
+    public function indexAction($brand = '+', $category = '+', $page = 1)
     {
-        return $this->render('ShopProductBundle:Product:index.html.twig', array(
-            'products'   => $this->getProductService()->getAllProducts(),
-            'categories' => $this->getCategoryService()->getVisibleCategories(),
-            'brands'     => $this->getBrandService()->getAllBrands(),
-        ));
-    }
-    
-    public function listAction()
-    {
+        if(!$this->getRequest()->isXmlHttpRequest()) { 
+            return $this->render('ShopProductBundle:Product:index.html.twig', array(
+                'categories' => $this->getCategoryService()->getVisibleCategories(),
+                'brands'     => $this->getBrandService()->getAllBrands(),                
+                'products'   => $this->getProductService()->getFilteredProductPaginator($brand, $category, $page)
+            ));
+        }
+        
         return $this->render('ShopProductBundle:Product:list.html.twig', array(
-            'products' => $this->getProductService()->getFilteredProducts(
-                $this->getRequest()->get('brand'),
-                $this->getRequest()->get('category')
+            'products' => $this->getProductService()->getFilteredProductPaginator(
+                $brand, $category, $page
             )
         ));
     }
-    
+        
     public function viewAction()
     {
-        return $this->render('ShopCartBundle:Cart:view.html.twig', array(
-            'cart' => $this->getCartService()->getCart()
-        ));
+        
     }
         
     /**
