@@ -1,6 +1,6 @@
 {% for product in products %}
     <div class="four columns add-bottom product">
-        <a href="#">
+        <a href="{{ url('product_view', { slug: product.id }) }}">
             <img src="/images/hanger.jpg" class="four columns alpha omega" />
         </a>
 

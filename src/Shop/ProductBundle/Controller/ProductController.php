@@ -32,9 +32,15 @@ class ProductController extends Controller
         ));
     }
         
-    public function viewAction()
+    /**
+     * TODO: Replace ID with slug.
+     * @Route("/tuote/{slug}/", name="product_view")
+     */
+    public function viewAction($slug)
     {
-        
+        return $this->render('ShopProductBundle:Product:view.html.twig', array(
+            'product' => $this->getProductService()->getProductById($slug)
+        ));
     }
         
     /**
