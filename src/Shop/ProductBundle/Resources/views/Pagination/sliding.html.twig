@@ -3,13 +3,13 @@
         <div class="buttons left">
             {% if first is defined and current != first %}
                 <span class="first">
-                    <a href="{{ path(route, query|merge({'page': first})) }}" class="button" title="{{ 'First'|trans }}">&lt;&lt;</a>
+                    <a href="{{ path(route, query|merge({'page': first})) }}" class="button">&lt;&lt;</a>
                 </span>
             {% endif %}
 
             {% if previous is defined %}
                 <span class="previous">
-                    <a href="{{ path(route, query|merge({'page': previous})) }}" class="button" title="{{ 'Previous'|trans }}">&lt;</a>
+                    <a href="{{ path(route, query|merge({'page': previous})) }}" class="button">&lt;</a>
                 </span>
             {% endif %}
             &nbsp;
@@ -30,13 +30,13 @@
             &nbsp;
             {% if next is defined %}
                 <span class="next">
-                    <a href="{{ path(route, query|merge({'page': next})) }}" class="button" title="{{ 'Next'|trans }}">&gt;</a>
+                    <a href="{{ path(route, query|merge({'page': next})) }}" class="button">&gt;</a>
                 </span>
             {% endif %}
                 
             {% if last is defined and current != last %}
                 <span class="last">
-                    <a href="{{ path(route, query|merge({'page': last})) }}" class="button" title="{{ 'Last'|trans }}">&gt;&gt;</a>
+                    <a href="{{ path(route, query|merge({'page': last})) }}" class="button">&gt;&gt;</a>
                 </span>
             {% endif %}
         </div>
