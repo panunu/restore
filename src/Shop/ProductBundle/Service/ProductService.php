@@ -63,7 +63,7 @@ class ProductService
         return $this->paginator->paginate(
             $this->repository->getQueryForFindByBrandsAndCategories($brands, $categories),
             $page,
-            $limit = 4
+            $limit = 12
         );
     }
 }

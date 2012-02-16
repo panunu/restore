@@ -29,9 +29,23 @@ $(document).ready ->
     # Refresh product list
     refresh = (data) ->
         $('#product-list').fadeOut 250, ->
-            $('#product-list').html data
+            $('#product-list').html data            
+            selection()
             $('#product-list').fadeIn 250
             return false
+
+    # Refresh filter selection
+    selection = ->
+        url = document.location.pathname.split '/'
+        $('li.brand.active, li.category.active').removeClass 'active'
+        activate url, 'merkki',    'brand'
+        activate url, 'kategoria', 'category'                       
+            
+    activate = (url, token, target) ->    
+        if (index = $.inArray(token, url)) != -1
+            $.map (url[index + 1].split '+'), (value) -> $("li.#{target} a[data-slug=" + value + "]").parents(".#{target}").addClass 'active' 
+            
+    selection()
                  
     # Deselected filter behaviour
     $('.deselected').live 'mouseout', (e) -> $(this).removeClass 'deselected'
