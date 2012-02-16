@@ -123,16 +123,16 @@ class CartTest extends TestCase
     public function countsTotalPriceOfCart()
     {
         $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
-            'priceWithTax' => '8.00'
+            'priceWithTax' => '8.99'
         ));
         
         $this->getEntityManager()->flush();
         
         $this->cart->addProduct($this->product)->addProduct($this->product)
-            ->addProduct($product);
+            ->addProduct($product)->addProduct($product);
         
         $this->assertEquals(
-            '18.00',
+            '27.98',
             $this->cart->getTotalPrice()
         );
     }

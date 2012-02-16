@@ -66,42 +66,4 @@ class CartServiceTest extends TestCase
         $this->assertEquals(2, $items[$this->product->getId()]->getQuantity());
         $this->assertEquals(1, count($this->service->getCart()->getProducts()));
     }
-    
-    /**
-     * @test
-     * @group service
-     * @group cart
-     */
-    public function countsProductsInCart()
-    {
-        $this->markTestIncomplete();
-        
-        $this->service->addProductToCart($this->product)
-            ->addProductToCart($this->product);
-        
-        $this->assertEquals(
-            2,
-            $this->service->getNumberOfProductsInCart()
-        );
-    }
-    
-    /**
-     * @test
-     * @group service
-     * @group cart
-     */
-    public function countTotalSumOfCart()
-    {
-        $this->markTestIncomplete();
-        
-        $product = $this->getFixtureFactory()->get(
-            'ProductBundle\Entity\Product',
-            array('price' => 16.93)
-        );
-        
-        $this->service->addProductToCart($product)
-            ->addProductToCart($product);
-        
-        $this->assertEquals(16.93 + 16.93, $this->service->getTotalSumOfCart());
-    }
 }
