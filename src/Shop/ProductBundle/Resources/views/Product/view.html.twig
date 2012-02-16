@@ -1,12 +1,35 @@
 {% extends 'ShopMainBundle::layout.html.twig' %}
 
 {% block content %}
-
-    <h1>{{ product.name }}</h1>
-
     <div class="sixteen columns alpha omega">
-        <h2 class="default">{{ product.brand.name }}</h2>
+        <h1 class="half-bottom left">{{ product.name }}</h1>
     </div>
-    
+
+
+    <div class="sixteen columns alpha omega">        
+        <img src="/images/placeholder.png" class="ten columns alpha" alt="{{ product.name }}, {{ product.brand.name }}" />
+        
+        <div class="six columns omega">
+            <h2 class="six columns alpha omega add-bottom">
+                <a href="{{ url('product_filter_brand', { 'brand': product.brand.slug }) }}" class="default"
+                   title="{{ 'Browse all'|trans }} {{product.brand.name}}{{ '-products'|trans }}">
+                    {{ product.brand.name }}
+                </a>
+            </h2>
+            
+            <div class="six columns alpha omega add-bottom justify">
+                Today's popular version of lorem ipsum was first created for Aldus Corporation's first desktop publishing program Aldus PageMaker in the mid-1980s for the Apple Macintosh.[1] Art director Laura Perry adapted older forms of the lorem text from typography samples — it was, for example, widely used in Letraset catalogs in the 1960s and 1970s[1] (anecdotes suggest that the original use of the "Lorem ipsum" text was by Letraset, which was used for print layouts by advertising agencies as early as the 1970s.) The text was frequently used in PageMaker templates.   
+            </div>
+            
+            <div class="two columns alpha">
+                <h2>{{ product.priceWithTax|money }}</h2>
+            </div>
+            
+            <div class="four columns omega">
+                <a href="#" class="button right">{{ 'Add to cart'|trans }}</a>
+                <input class="right" type="text" id="product-count" size="2" value="1"></input>
+            </div>
+        </div>
+    </div>
     
 {% endblock %}

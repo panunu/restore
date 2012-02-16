@@ -1,11 +1,14 @@
 {% for product in products %}
     <div class="four columns add-bottom product">
         <a href="{{ url('product_view', { slug: product.id }) }}">
-            <img src="/images/hanger.jpg" class="four columns alpha omega" />
+            <img src="/images/placeholder.png" class="four columns alpha omega" />
         </a>
 
         <div class="four columns alpha omega">
-            <h3 class="default"><a href="#" class="default">{{ product.name }}</a></h3>
+            <h3 class="default">
+                <a href="{{ url('product_view', { slug: product.id }) }}" class="default">{{ product.name }}</a>
+            </h3>
+            
             <a href="#" class="default"><small class="left">{{ product.brand.name }}</small></a>
             <strong class="right">{{ product.priceWithTax|money }}</strong>
         </div>
