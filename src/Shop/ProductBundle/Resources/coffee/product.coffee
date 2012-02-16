@@ -4,6 +4,7 @@ $(document).ready ->
     stateless = true
     $(window).bind 'popstate', (e) ->
         if not stateless then $.get location.pathname, (data) -> return refresh data
+        stateless = false
     
     # Filter by brands and categories
     $('#filter .brand a, #filter .category a').live 'click', ->
@@ -21,7 +22,7 @@ $(document).ready ->
         url = '/app_dev.php/tuotteet'
         if brands     then url += '/merkki/'    + brands
         if categories then url += '/kategoria/' + categories
-                    
+
         return $.get url, (data) ->
             refresh data
             window.history.pushState null, null, url

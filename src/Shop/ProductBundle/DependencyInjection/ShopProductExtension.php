@@ -18,3 +18,4 @@ class ShopProductExtension extends Extension
         $loader->load('services.yml');
     }
 }
+

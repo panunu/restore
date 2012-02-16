@@ -1,38 +1,44 @@
 {% if pageCount > 1 %}
-<div class="pagination">
-	{% if first is defined and current != first %}
-        <span class="first">
-        	<a href="{{ path(route, query|merge({'page': first})) }}">&lt;&lt;</a>
-        </span>
-    {% endif %}
+    <div id="pagination" class="sixteen columns center">
+        <div class="buttons left">
+            {% if first is defined and current != first %}
+                <span class="first">
+                    <a href="{{ path(route, query|merge({'page': first})) }}" class="button" title="{{ 'First'|trans }}">&lt;&lt;</a>
+                </span>
+            {% endif %}
 
-    {% if previous is defined %}
-        <span class="previous">
-        	<a href="{{ path(route, query|merge({'page': previous})) }}">&lt;</a>
-        </span>
-    {% endif %}
+            {% if previous is defined %}
+                <span class="previous">
+                    <a href="{{ path(route, query|merge({'page': previous})) }}" class="button" title="{{ 'Previous'|trans }}">&lt;</a>
+                </span>
+            {% endif %}
+            &nbsp;
+        </div>
 
-    {% for page in pagesInRange %}
-        {% if page != current %}
-            <span class="page">
-            	<a href="{{ path(route, query|merge({'page': page})) }}">{{ page }}</a>
-            </span>
-        {% else %}
-            <span class="current">{{ page }}</span>
-        {% endif %}
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <span class="page">
+                    <a href="{{ path(route, query|merge({'page': page})) }}" class="button">{{ page }}</a>
+                </span>
+            {% else %}
+                <span class="current">{{ page }}</span>
+            {% endif %}
 
-    {% endfor %}
+        {% endfor %}
 
-    {% if next is defined %}
-        <span class="next">
-        	<a href="{{ path(route, query|merge({'page': next})) }}">&gt;</a>
-        </span>
-    {% endif %}
-
-    {% if last is defined and current != last %}
-        <span class="last">
-        	<a href="{{ path(route, query|merge({'page': last})) }}">&gt;&gt;</a>
-        </span>
-    {% endif %}
-</div>
+        <div class="buttons right">
+            &nbsp;
+            {% if next is defined %}
+                <span class="next">
+                    <a href="{{ path(route, query|merge({'page': next})) }}" class="button" title="{{ 'Next'|trans }}">&gt;</a>
+                </span>
+            {% endif %}
+                
+            {% if last is defined and current != last %}
+                <span class="last">
+                    <a href="{{ path(route, query|merge({'page': last})) }}" class="button" title="{{ 'Last'|trans }}">&gt;&gt;</a>
+                </span>
+            {% endif %}
+        </div>
+    </div>
 {% endif %}

@@ -13,8 +13,10 @@ class ProductController extends Controller
      * @Route("/tuotteet/merkki/{brand}",                      name="product_filter_brand")
      * @Route("/tuotteet/kategoria/{category}",                name="product_filter_category")
      */
-    public function indexAction($brand = '+', $category = '+', $page = 1)
+    public function indexAction($brand = '+', $category = '+')
     {
+        $page = $this->getRequest()->get('page') ?: 1;
+        
         if(!$this->getRequest()->isXmlHttpRequest()) { 
             return $this->render('ShopProductBundle:Product:index.html.twig', array(
                 'categories' => $this->getCategoryService()->getVisibleCategories(),
