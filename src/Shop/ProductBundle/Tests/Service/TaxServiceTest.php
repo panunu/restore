@@ -101,19 +101,48 @@ class TaxServiceTest extends TestCase
         ));
         
         $tax = $this->getFixtureFactory()->get('ProductBundle\Entity\Tax', array(
-            'percent'  => 10.00,
+            'percent'  => 23.00,
             'validity' => new DateTime('2000-01-02')
         ));
         
         $this->getEntityManager()->flush();
         
         $this->assertEquals(
-            '1.82',
+            '3.74',
             $this->service->getAmountOfTax($product)->toString()
         );
         
         $this->assertEquals(
-            '18.18',
+            '16.26',
+            $this->service->untax($product)->toString()
+        );
+    }
+    
+    /**
+     * @test
+     * @group service
+     * @group tax
+     */
+    public function calculatesTaxForProductWithOtherValues()
+    {
+        $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
+            'priceWithTax' => 16.00
+        ));
+        
+        $tax = $this->getFixtureFactory()->get('ProductBundle\Entity\Tax', array(
+            'percent'  => 23.00,
+            'validity' => new DateTime('2000-01-02')
+        ));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->assertEquals(
+            '2.99',
+            $this->service->getAmountOfTax($product)->toString()
+        );
+        
+        $this->assertEquals(
+            '13.01',
             $this->service->untax($product)->toString()
         );
     }
