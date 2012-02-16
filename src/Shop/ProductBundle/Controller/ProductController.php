@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 class ProductController extends Controller
 {
     /**
-     * @Route("/tuotteet", name="product_index")
-     * @Route("/tuotteet/merkki/{brand}", name="product_filter_brand")
-     * @Route("/tuotteet/kategoria/{category}", name="product_filter_category")
-     * @Route("/tuotteet/merkki/{brand}/kategoria/{category}", name="product_filter_both")
+     * @Route("/tuotteet/", name="product_index")
+     * @Route("/tuotteet/merkki/{brand}/", name="product_filter_brand")
+     * @Route("/tuotteet/kategoria/{category}/", name="product_filter_category")
+     * @Route("/tuotteet/merkki/{brand}/kategoria/{category}/", name="product_filter_both")
      */
     public function indexAction($brand = '+', $category = '+')
     {
