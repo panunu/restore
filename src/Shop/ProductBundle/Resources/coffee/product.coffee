@@ -1,10 +1,10 @@
 $(document).ready ->
     
     # History API
-    stateless = true
-    $(window).bind 'popstate', (e) ->
-        if not stateless then $.get location.pathname, (data) -> return refresh data
-        stateless = false
+    History = window.History
+    History.Adapter.bind window, 'statechange', ->
+        $.get History.getState().url, (data) ->
+            return refresh data
     
     # Filter by brands and categories
     $('#filter .brand a, #filter .category a').live 'click', ->
@@ -24,10 +24,7 @@ $(document).ready ->
         if categories then url += '/kategoria/' + categories
 
         return $.get url, (data) ->
-            refresh data
-            window.history.pushState null, null, url
-            stateless = false
-            return false
+            History.pushState null, History.getState().title, url
     
     # Refresh product list
     refresh = (data) ->
