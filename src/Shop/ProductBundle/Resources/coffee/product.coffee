@@ -44,9 +44,8 @@ $(document).ready ->
         return false
         
     # Ajaxify pagination
-    $('#paginator a').live 'click', ->
-        url = $(this).attr 'href'
-        $.get url, (data) ->
-            return refresh data
+    $('a', '#pagination').live 'click', ->
+        History.pushState null, History.getState().title, $(this).attr 'href'
+        return false
                 
    
