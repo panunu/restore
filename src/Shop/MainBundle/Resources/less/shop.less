@@ -46,7 +46,8 @@ body { cursor: default; font-family: @font; font-size: @size; }
 .left  { float: left;  }
 .right { float: right; }
 
-.center { text-align: center; }
+.center  { text-align: center; }
+.justify { text-align: justify; }
 
 .smaller { font-size: smaller; }
 .larger  { font-size: larger; }
@@ -61,9 +62,8 @@ ul { margin: 0px; }
 
 a.button, button, submit, input[type="submit"]
 {
-    margin-top: -4px;
     margin-bottom: 2px;
-    padding:     4px 8px 4px 8px;
+    padding:       4px 8px 4px 8px;
 
     font-size:       smaller;
     text-transform:  uppercase;
@@ -112,6 +112,7 @@ h1 { margin: 30px 0 50px 0; }
     .box-shadow(0px 5px 5px #eee);
 
     .shopping-cart { margin: 0px 20px 0px 5px; }
+    .button        { margin-top: -5px; }
 }
 
 #logo
