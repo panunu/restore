@@ -5,6 +5,20 @@ $(document).ready ->
     History.Adapter.bind window, 'statechange', ->
         $.get History.getState().url, (data) ->
             return refresh data
+            
+    # Refresh filter selection
+    selection = ->
+        url = document.location.pathname.split '/'
+        $('li.brand.active, li.category.active').removeClass 'active'
+        activate url, 'merkki',    'brand'
+        activate url, 'kategoria', 'category'                       
+            
+    activate = (url, token, target) ->    
+        if (index = $.inArray(token, url)) != -1
+            $.map (url[index + 1].split '+'), (value) ->
+                $("li.#{target} a[data-slug=" + value + "]").parents(".#{target}").addClass 'active' 
+            
+    selection()
     
     # Filter by brands and categories
     $('#filter .brand a, #filter .category a').live 'click', ->
@@ -34,19 +48,6 @@ $(document).ready ->
             $('#product-list').fadeIn 250
             return false
 
-    # Refresh filter selection
-    selection = ->
-        url = document.location.pathname.split '/'
-        $('li.brand.active, li.category.active').removeClass 'active'
-        activate url, 'merkki',    'brand'
-        activate url, 'kategoria', 'category'                       
-            
-    activate = (url, token, target) ->    
-        if (index = $.inArray(token, url)) != -1
-            $.map (url[index + 1].split '+'), (value) -> $("li.#{target} a[data-slug=" + value + "]").parents(".#{target}").addClass 'active' 
-            
-    selection()
-                 
     # Deselected filter behaviour
     $('.deselected').live 'mouseout', (e) -> $(this).removeClass 'deselected'
     
@@ -61,5 +62,4 @@ $(document).ready ->
     $('a', '#pagination').live 'click', ->
         History.pushState null, History.getState().title, $(this).attr 'href'
         return false
-                
-   
+        
