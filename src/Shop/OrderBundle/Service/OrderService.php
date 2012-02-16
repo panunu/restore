@@ -41,8 +41,7 @@ class OrderService
      */
     public function order(Cart $cart)
     {
-        $purchase = new Purchase();
-        $purchase->setDate(new DateTime());
+        $purchase = new Purchase(new DateTime());
         
         $this->setItemsForPurchase($cart->getItems(), $purchase);
         $this->setTotalsForPurchase($purchase);   

@@ -4,7 +4,8 @@ namespace Shop\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
     Shop\FrameworkBundle\Entity\AbstractEntity as Entity,
-    Doctrine\Common\Collections\ArrayCollection;
+    Doctrine\Common\Collections\ArrayCollection,
+    \DateTime;
 
 /**
  * @ORM\Table(name="Purchase")
@@ -56,11 +57,18 @@ class Purchase extends Entity
      */
     protected $items;
     
-    public function __construct()
+    /**
+     * @param DateTime $datetime 
+     */
+    public function __construct(DateTime $datetime)
     {
+        $this->date  = $datetime;
         $this->items = new ArrayCollection();
     }
     
+    /**
+     * @return array 
+     */
     public function getProducts()
     {
         if(!$this->getItems()) {
