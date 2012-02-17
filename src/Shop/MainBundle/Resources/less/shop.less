@@ -28,15 +28,15 @@
 
 .gradient-vertical(@top, @bottom)
 {
-  background:       @top;
-  background-image: -moz-linear-gradient(top,  @top, @bottom);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(@top), to(@bottom));
-  background-image: -webkit-linear-gradient(top, @top, @bottom);
-  background-image: -o-linear-gradient(top, @top, @bottom);
-  background-image: linear-gradient(top, @top, @bottom);
-  filter:           %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @top, @bottom);
-  -ms-filter:       %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @top, @bottom);
-  background-image: -ms-linear-gradient(top, @top, @bottom);
+    background:       @top;
+    background-image: -moz-linear-gradient(top,  @top, @bottom);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@top), to(@bottom));
+    background-image: -webkit-linear-gradient(top, @top, @bottom);
+    background-image: -o-linear-gradient(top, @top, @bottom);
+    background-image: linear-gradient(top, @top, @bottom);
+    filter:           %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @top, @bottom);
+    -ms-filter:       %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @top, @bottom);
+    background-image: -ms-linear-gradient(top, @top, @bottom);
 }
 
 // Global
