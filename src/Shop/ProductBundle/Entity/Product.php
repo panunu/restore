@@ -23,9 +23,16 @@ class Product extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     * @ORM\Column(name="name", type="string", length="100", nullable=false)
      */
     protected $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length="1000", nullable=true)
+     */
+    protected $description;    
     
     /**
      * @var float
