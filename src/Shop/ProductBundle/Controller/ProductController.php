@@ -16,6 +16,7 @@ class ProductController extends Controller
     public function indexAction($brand = '+', $category = '+')
     {
         $page = $this->getRequest()->get('page') ?: 1;
+        $this->getHistoryService()->saveUrl($this->getRequest()->getRequestUri());
         
         if(!$this->getRequest()->isXmlHttpRequest()) { 
             return $this->render('ShopProductBundle:Product:index.html.twig', array(
@@ -39,10 +40,11 @@ class ProductController extends Controller
     public function viewAction($slug)
     {
         return $this->render('ShopProductBundle:Product:view.html.twig', array(
-            'product' => $this->getProductService()->getProductById($slug)
+            'product' => $this->getProductService()->getProductById($slug),
+            'history' => $this->getHistoryService()->getUrl()
         ));
     }
-        
+    
     /**
      * @return ProductService
      */
@@ -65,5 +67,13 @@ class ProductController extends Controller
     protected function getBrandService()
     {
         return $this->get('shop_brand.service.brand');
+    }
+    
+    /**
+     * @return HistoryService
+     */
+    protected function getHistoryService()
+    {
+        return $this->get('shop_product.service.history');
     }
 }
