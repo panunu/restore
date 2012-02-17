@@ -21,13 +21,19 @@
                 {{ product.description }}   
             </div>
             
-            <div class="two columns alpha">
-                <h2>{{ product.priceWithTax|money }}</h2>
+            <div class="six columns alpha omega add-bottom">
+                <div class="two columns alpha">
+                    <h2>{{ product.priceWithTax|money }}</h2>
+                </div>
+
+                <div class="four columns omega">
+                    <a href="#" class="button right">{{ 'Add to cart'|trans }}</a>
+                    {#<input class="right center" type="text" id="product-count" size="2" value="1"></input>#}
+                </div>                    
             </div>
-            
-            <div class="four columns omega">
-                <a href="#" class="button right">{{ 'Add to cart'|trans }}</a>
-                <input class="right" type="text" id="product-count" size="2" value="1"></input>
+                
+            <div class="six columns alpha omega">
+                <a href="#" class="button right ">&nbsp;{{ 'Continue shopping?'|trans }}&nbsp;</a>
             </div>
         </div>
     </div>
