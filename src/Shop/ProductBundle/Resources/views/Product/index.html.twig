@@ -6,5 +6,16 @@
     <div id="product-list" class="sixteen columns alpha omega">        
         {% include 'ShopProductBundle:Product:list.html.twig' %}
     </div>
-        
+    
+    <script type="text/javascript">
+        var route_product_index = '{{ url('product_index') }}';
+    </script>
+{% endblock %}
+    
+{% block javascripts %}
+    {{ parent() }}
+    
+    {% javascripts output="/js/product.js" filter="coffee,?yui_js" '@ShopProductBundle/Resources/coffee/product.coffee' %}        
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
