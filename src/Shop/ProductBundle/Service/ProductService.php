@@ -42,6 +42,15 @@ class ProductService
     }
     
     /**
+     * @param  string  $slug
+     * @return Product
+     */
+    public function getProductBySlug($slug)
+    {
+        return $this->repository->findOneBySlug($slug);
+    }
+    
+    /**
      * @return array
      */
     public function getAllProducts()

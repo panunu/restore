@@ -1,5 +1,7 @@
 {% extends 'ShopMainBundle::layout.html.twig' %}
 
+{% block title %}{{ product.name }} - {{ product.brand.name }}{% endblock %}
+
 {% block content %}
     <div class="sixteen columns alpha omega">
         <h1 class="half-bottom left">{{ product.name }}</h1>

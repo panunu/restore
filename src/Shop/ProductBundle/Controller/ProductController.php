@@ -16,6 +16,7 @@ class ProductController extends Controller
     public function indexAction($brand = '+', $category = '+')
     {
         $page = $this->getRequest()->get('page') ?: 1;
+        
         $this->getHistoryService()->saveUrl($this->getRequest()->getRequestUri());
         
         if(!$this->getRequest()->isXmlHttpRequest()) { 
@@ -32,15 +33,14 @@ class ProductController extends Controller
             )
         ));
     }
-        
+    
     /**
-     * TODO: Replace ID with slug.
      * @Route("/tuote/{slug}/", name="product_view")
      */
     public function viewAction($slug)
     {
         return $this->render('ShopProductBundle:Product:view.html.twig', array(
-            'product' => $this->getProductService()->getProductById($slug),
+            'product' => $this->getProductService()->getProductBySlug($slug),
             'history' => $this->getHistoryService()->getUrl()
         ));
     }

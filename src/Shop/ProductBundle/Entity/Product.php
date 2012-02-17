@@ -3,6 +3,7 @@
 namespace Shop\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
+    \Gedmo\Mapping\Annotation as Gedmo,
     Shop\FrameworkBundle\Entity\AbstractEntity as Entity;
 
 /**
@@ -19,6 +20,14 @@ class Product extends Entity
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+    
+    /**
+     * @var string
+     * 
+     * @Gedmo\Slug(fields={"brand", "name"})
+     * @ORM\Column(name="slug", type="string", length=128, unique=true)
+     */
+    protected $slug;
 
     /**
      * @var string
