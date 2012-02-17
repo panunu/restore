@@ -6,9 +6,12 @@
     </div>
 
 
-    <div class="sixteen columns alpha omega">      
-        <img src="/images/placeholder.png" class="ten columns alpha" alt="{{ product.name }}, {{ product.brand.name }}" />
-        
+    <div class="sixteen columns alpha omega">
+        <div id="product-showcase" class="ten columns alpha">
+            <img src="/images/placeholder.png" class="ten columns alpha omega" alt="{{ product.name }}, {{ product.brand.name }}" />
+            <img src="/images/placeholder-2.png" class="ten columns alpha omega" alt="{{ product.name }}, {{ product.brand.name }}" />
+        </div>
+                
         <div class="six columns omega">
             <h2 class="six columns alpha omega add-bottom">
                 <a href="{{ url('product_filter_brand', { 'brand': product.brand.slug }) }}" class="default"
@@ -33,7 +36,9 @@
             </div>
                 
             <div class="six columns alpha omega">
-                <a href="#" class="button right ">&nbsp;{{ 'Continue shopping?'|trans }}&nbsp;</a>
+                <a href="{% if history %}{{ history }}{% else %}{{ url('product_index') }}{% endif %}" id="continue-shopping" class="button right">
+                    &nbsp;{{ 'Continue shopping?'|trans }}&nbsp;
+                </a>
             </div>
         </div>
     </div>

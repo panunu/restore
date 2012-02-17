@@ -29,6 +29,10 @@ services:
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
         
+    shop_product.service.history:
+        class:     Shop\ProductBundle\Service\HistoryService
+        arguments: ["@session"]
+        
     money.twig.extension:
         class: Shop\ProductBundle\Twig\Extensions\Extension\Money
         tags:

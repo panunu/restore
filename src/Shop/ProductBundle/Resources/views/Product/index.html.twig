@@ -15,7 +15,7 @@
 {% block javascripts %}
     {{ parent() }}
     
-    {% javascripts output="/js/product.js" filter="coffee,?yui_js" '@ShopProductBundle/Resources/coffee/product.coffee' %}        
+    {% javascripts output="/js/product.js" filter="coffee,?yui_js" '@ShopProductBundle/Resources/coffee/product-filter.coffee' %}        
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
