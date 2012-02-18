@@ -7,3 +7,11 @@ Add to cart: "Lisää ostoskoriin"
 
 Browse all: "Näytä kaikki"
 -products:  "-tuotteet"
+
+New product: "Uusi tuote"
+
+Name:         "Tuotenimi"
+Description:  "Tuotekuvaus (alle 1000 merkkiä)"
+Pricewithtax: "Verollinen hinta (esim. 19.99)"
+Brand:        "Merkki"
+Category:     "Kategoria"

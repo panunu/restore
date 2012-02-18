@@ -42,4 +42,12 @@ class Category extends Entity
      * @ORM\Column(name="visible", type="boolean", nullable=false)
      */
     protected $visible;
+    
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 }

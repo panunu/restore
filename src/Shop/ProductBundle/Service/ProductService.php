@@ -2,11 +2,14 @@
 
 namespace Shop\ProductBundle\Service;
 
-use \Doctrine\ORM\EntityManager,
+use Doctrine\ORM\EntityManager,
     Shop\ProductBundle\Entity\Product,
     \DateTime,
-    \Doctrine\ORM\EntityRepository,
-    Knp\Component\Pager\Paginator;
+    Doctrine\ORM\EntityRepository,
+    Knp\Component\Pager\Paginator,
+    Symfony\Component\Form\FormFactory,    
+    Symfony\Component\Form\Form,
+    Shop\ProductBundle\Form\Type\ProductFormType;
 
 class ProductService
 {
@@ -21,15 +24,29 @@ class ProductService
     protected $repository;
     
     /**
+     * @var Paginator
+     */
+    protected $paginator;
+    
+    /**
+     * @var FormFactory
+     */
+    protected $factory;
+    
+    /**
+     *
      * @param EntityManager    $em
      * @param EntityRepository $repository
+     * @param Paginator        $paginator
+     * @param FormFactory      $formFactory 
      */
     public function __construct(EntityManager $em, EntityRepository $repository,
-        Paginator $paginator)
+        Paginator $paginator, FormFactory $formFactory)
     {
-        $this->em         = $em;
-        $this->repository = $repository;
-        $this->paginator  = $paginator;
+        $this->em          = $em;
+        $this->repository  = $repository;
+        $this->paginator   = $paginator;
+        $this->formFactory = $formFactory;
     }
     
     /**
@@ -73,6 +90,17 @@ class ProductService
             $this->repository->getQueryForFindByBrandsAndCategories($brands, $categories),
             $page,
             $limit = 12
+        );
+    }
+    
+    /**
+     * @param  Product $product
+     * @return ProductFormType
+     */
+    public function getProductForm(Product $product)
+    {
+        return $this->formFactory->create(
+            new ProductFormType(get_class($product), $product)
         );
     }
 }

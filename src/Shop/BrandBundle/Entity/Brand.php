@@ -35,4 +35,12 @@ class Brand extends Entity
      * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
     protected $slug;
+    
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 }

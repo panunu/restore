@@ -3,7 +3,8 @@
 namespace Shop\ProductBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Shop\ProductBundle\Entity\Product;
 
 class ProductController extends Controller
 {
@@ -50,7 +51,9 @@ class ProductController extends Controller
      */
     public function newAction()
     {
-        return $this->render('ShopProductBundle:Product:new.html.twig');
+        return $this->render('ShopProductBundle:Product:new.html.twig', array(
+            'form' => $this->getProductService()->getProductForm(new Product())->createView()
+        ));
     }
     
     /**
