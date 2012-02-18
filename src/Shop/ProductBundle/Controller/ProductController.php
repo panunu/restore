@@ -46,6 +46,14 @@ class ProductController extends Controller
     }
     
     /**
+     * @Route("/tuotteet/uusi/", name="product_new")
+     */
+    public function newAction()
+    {
+        return $this->render('ShopProductBundle:Product:new.html.twig');
+    }
+    
+    /**
      * @return ProductService
      */
     protected function getProductService()
