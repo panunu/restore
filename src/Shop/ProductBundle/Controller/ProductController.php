@@ -48,12 +48,12 @@ class ProductController extends Controller
     }
     
     /**
-     * @Route("/hallinta/tuote/{slug}/", name="product_edit")
+     * @Route("/hallinta/tuote/{id}/", name="product_edit")
      */
-    public function editAction($slug)
+    public function editAction($id)
     {
         $self    = $this;
-        $product = $this->getProductService()->getProductBySlug($slug);
+        $product = $this->getProductService()->getProductById($id);
         $form    = $this->getProductService()->getProductForm($product);
         
         $this->handleForm($form, function($form) use($self, $product) {
@@ -62,7 +62,7 @@ class ProductController extends Controller
             $self->notify('Product saved');
             
             return $self->redirect($self->generateUrl(
-                'product_edit', array('slug' => $product->getSlug())
+                'product_edit', array('id' => $product->getId())
             ));
         });
         
@@ -86,7 +86,7 @@ class ProductController extends Controller
             $self->notify('New product saved');
             
             return $self->redirect($self->generateUrl(
-                'product_edit', array('slug' => $form->getData()->getSlug())
+                'product_edit', array('id' => $form->getData()->getId())
             ));
         });
         
