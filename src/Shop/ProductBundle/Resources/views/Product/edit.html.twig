@@ -1,0 +1,15 @@
+{% extends 'ShopMainBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Edit product'|trans }}{% endblock %}
+
+{% block content %}
+    
+    <h1>{{ 'Edit product'|trans }}</h1>
+    
+    <div class="sixteen columns alpha omega">
+        <form action="{{ url('product_edit', { 'slug': product.slug }) }}" method="post" {{ form_enctype(form) }}>
+            {% include 'ShopProductBundle:Product:form.html.twig' with { 'form': form } %}
+        </form>
+    </div>
+    
+{% endblock %}

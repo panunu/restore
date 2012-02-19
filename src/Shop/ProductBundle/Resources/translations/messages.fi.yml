@@ -8,10 +8,18 @@ Add to cart: "Lisää ostoskoriin"
 Browse all: "Näytä kaikki"
 -products:  "-tuotteet"
 
-New product: "Uusi tuote"
+New product:  "Uusi tuote"
+Edit product: "Muokkaa tuotetta"
 
 Name:         "Tuotenimi"
 Description:  "Tuotekuvaus (alle 1000 merkkiä)"
-Pricewithtax: "Verollinen hinta (esim. 19.99)"
+Pricewithtax: "Verollinen hinta (esim. 19,99)"
 Brand:        "Merkki"
 Category:     "Kategoria"
+Tax:          "Vero"
+
+Products and services (23% 1.1.2012):         "Tuotteet ja palvelut (23% 1.1.2012)"
+Food and groceries (13% 1.1.2012):            "Ravintola-, ateriapalvelut (13% 1.1.2012)"
+Culture, literature, medicine (9% 1.1.2012):  "Elintarvike, ruoka, rehu (9% 1.1.2012)"
+
+Save: "Tallenna"

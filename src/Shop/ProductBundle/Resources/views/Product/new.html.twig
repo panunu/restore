@@ -6,8 +6,10 @@
     
     <h1>{{ 'New product'|trans }}</h1>
     
-    <div class="sixteen columns alpha omega">
-        {{ form_rest(form) }}
+    <div class="sixteen columns alpha omega">        
+        <form action="{{ url('product_new') }}" method="post" {{ form_enctype(form) }}>
+            {% include 'ShopProductBundle:Product:form.html.twig' with { 'form': form } %}
+        </form>
     </div>
     
 {% endblock %}

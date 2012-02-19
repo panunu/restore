@@ -33,7 +33,20 @@ class FixtureFactory extends BaseFixtureFactory
         $this->defineEntity('ProductBundle\Entity\Product', array(
             'name'         => FieldDef::sequence("Product %d"),
             'priceWithTax' => 5.00,
-            'tax'          => Tax::TYPE_GENERAL
+            'tax'          => Tax::TYPE_GENERAL,
+            'brand'        => FieldDef::reference('BrandBundle\Entity\Brand'),
+            'category'     => FieldDef::reference('ProductBundle\Entity\Category'),
+        ));
+        
+        $this->defineEntity('BrandBundle\Entity\Brand', array(
+            'name' => FieldDef::sequence("Brand %d"),
+            'slug' => FieldDef::sequence("brand-%d"),
+        ));
+        
+        $this->defineEntity('ProductBundle\Entity\Category', array(
+            'name'    => FieldDef::sequence("Category %d"),
+            'slug'    => FieldDef::sequence("category-%d"),
+            'visible' => true,
         ));
         
         return $this;

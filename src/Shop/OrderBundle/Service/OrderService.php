@@ -69,7 +69,7 @@ class OrderService
             $item->setPriceWithoutTax($this->taxService->untax($product));
             $item->setPriceWithTax($product->getPriceWithTax());
             
-            $purchase->addItem($item);
+            $purchase->addPurchaseItem($item);
             $this->em->persist($item);
         }
         

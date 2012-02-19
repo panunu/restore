@@ -1,0 +1,18 @@
+{{ form_errors(form) }}
+            
+<div class="ten columns alpha add-bottom">
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+</div>
+
+<div class="six columns omega">
+    {{ form_row(form.priceWithTax) }}
+    {{ form_row(form.tax) }}
+
+    <br/>
+
+    {{ form_rest(form) }}
+
+    <br/>
+    <input type="submit" value="{{ 'Save'|trans }}" />
+</div>

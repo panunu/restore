@@ -3,7 +3,6 @@
 namespace Shop\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
-    Shop\FrameworkBundle\Entity\AbstractEntity as Entity,
     Doctrine\Common\Collections\ArrayCollection,
     \DateTime;
 
@@ -11,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM,
  * @ORM\Table(name="Purchase")
  * @ORM\Entity
  */
-class Purchase extends Entity
+class Purchase
 {
     /**
      * @var integer
@@ -82,16 +81,112 @@ class Purchase extends Entity
     }    
     
     /**
-     * @param  PurchaseItem $item
-     * @return Purchase
+     * Get id
+     *
+     * @return integer 
      */
-    public function addItem(PurchaseItem $item)
+    public function getId()
     {
-        if(!$this->items->contains($item)) {
-            $this->items->add($item);
-            $item->setPurchase($this);
-        }
-        
-        return $this;
+        return $this->id;
+    }
+
+    /**
+     * Set totalTax
+     *
+     * @param decimal $totalTax
+     */
+    public function setTotalTax($totalTax)
+    {
+        $this->totalTax = $totalTax;
+    }
+
+    /**
+     * Get totalTax
+     *
+     * @return decimal 
+     */
+    public function getTotalTax()
+    {
+        return $this->totalTax;
+    }
+
+    /**
+     * Set totalWithoutTax
+     *
+     * @param decimal $totalWithoutTax
+     */
+    public function setTotalWithoutTax($totalWithoutTax)
+    {
+        $this->totalWithoutTax = $totalWithoutTax;
+    }
+
+    /**
+     * Get totalWithoutTax
+     *
+     * @return decimal 
+     */
+    public function getTotalWithoutTax()
+    {
+        return $this->totalWithoutTax;
+    }
+
+    /**
+     * Set totalWithTax
+     *
+     * @param decimal $totalWithTax
+     */
+    public function setTotalWithTax($totalWithTax)
+    {
+        $this->totalWithTax = $totalWithTax;
+    }
+
+    /**
+     * Get totalWithTax
+     *
+     * @return decimal 
+     */
+    public function getTotalWithTax()
+    {
+        return $this->totalWithTax;
+    }
+
+    /**
+     * Set date
+     *
+     * @param datetime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * Get date
+     *
+     * @return datetime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Add items
+     *
+     * @param Shop\OrderBundle\Entity\PurchaseItem $items
+     */
+    public function addPurchaseItem(\Shop\OrderBundle\Entity\PurchaseItem $items)
+    {
+        $this->items[] = $items;
+    }
+
+    /**
+     * Get items
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 }

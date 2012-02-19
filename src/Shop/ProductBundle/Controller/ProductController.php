@@ -2,8 +2,9 @@
 
 namespace Shop\ProductBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+use Shop\FrameworkBundle\Controller\Controller,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
     Shop\ProductBundle\Entity\Product;
 
 class ProductController extends Controller
@@ -20,7 +21,7 @@ class ProductController extends Controller
         
         $this->getHistoryService()->saveUrl($this->getRequest()->getRequestUri());
         
-        if(!$this->getRequest()->isXmlHttpRequest()) { 
+        if (!$this->getRequest()->isXmlHttpRequest()) { 
             return $this->render('ShopProductBundle:Product:index.html.twig', array(
                 'categories' => $this->getCategoryService()->getVisibleCategories(),
                 'brands'     => $this->getBrandService()->getAllBrands(),                
@@ -47,19 +48,57 @@ class ProductController extends Controller
     }
     
     /**
-     * @Route("/tuotteet/uusi/", name="product_new")
+     * @Route("/hallinta/tuote/{slug}/", name="product_edit")
+     */
+    public function editAction($slug)
+    {
+        $self    = $this;
+        $product = $this->getProductService()->getProductBySlug($slug);
+        $form    = $this->getProductService()->getProductForm($product);
+        
+        $this->handleForm($form, function($form) use($self, $product) {
+            $self->getProductService()->saveProductByForm($form);      
+            
+            $self->notify('Product saved');
+            
+            return $self->redirect($self->generateUrl(
+                'product_edit', array('slug' => $product->getSlug())
+            ));
+        });
+        
+        return $this->render('ShopProductBundle:Product:edit.html.twig', array(
+            'product' => $product,
+            'form'    => $form->createView()
+        ));
+    }
+    
+    /**
+     * @Route("/hallinta/tuote/", name="product_new")
      */
     public function newAction()
     {
+        $self = $this;
+        $form = $this->getProductService()->getProductForm(new Product());
+        
+        $this->handleForm($form, function($form) use($self) {
+            $self->getProductService()->saveProductByForm($form);
+            
+            $self->notify('New product saved');
+            
+            return $self->redirect($self->generateUrl(
+                'product_edit', array('slug' => $form->getData()->getSlug())
+            ));
+        });
+        
         return $this->render('ShopProductBundle:Product:new.html.twig', array(
-            'form' => $this->getProductService()->getProductForm(new Product())->createView()
+            'form' => $form->createView()
         ));
     }
     
     /**
      * @return ProductService
      */
-    protected function getProductService()
+    public function getProductService()
     {
         return $this->get('shop_product.service.product');
     }
@@ -67,7 +106,7 @@ class ProductController extends Controller
     /**
      * @return CategoryService
      */
-    protected function getCategoryService()
+    public function getCategoryService()
     {
         return $this->get('shop_product.service.category');
     }
@@ -75,7 +114,7 @@ class ProductController extends Controller
     /**
      * @return BrandService
      */
-    protected function getBrandService()
+    public function getBrandService()
     {
         return $this->get('shop_brand.service.brand');
     }
@@ -83,7 +122,7 @@ class ProductController extends Controller
     /**
      * @return HistoryService
      */
-    protected function getHistoryService()
+    public function getHistoryService()
     {
         return $this->get('shop_product.service.history');
     }

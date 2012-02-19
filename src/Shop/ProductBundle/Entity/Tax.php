@@ -2,16 +2,15 @@
 
 namespace Shop\ProductBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM,
-    Shop\FrameworkBundle\Entity\AbstractEntity as Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="Tax")
  * @ORM\Entity(repositoryClass="Shop\ProductBundle\Repository\TaxRepository")
  */
-class Tax extends Entity
+class Tax
 {
-    const TYPE_GENERAL = 1, TYPE_FOOD = 2, TYPE_CULTURE = 3, TYPE_REPAIR = 4;
+    const TYPE_GENERAL = 1, TYPE_FOOD = 2, TYPE_CULTURE = 3;
     
     /**
      * @var integer
@@ -49,10 +48,9 @@ class Tax extends Entity
     public static function getTaxTypes()
     {
         return array(
-            self::TYPE_GENERAL => 'Products and services',
-            self::TYPE_FOOD    => 'Food',
-            self::TYPE_CULTURE => 'Culture and literature',
-            self::TYPE_REPAIR  => 'Repairs and modifications'
+            self::TYPE_GENERAL => 'Products and services (23% 1.1.2012)',
+            self::TYPE_FOOD    => 'Food and groceries (13% 1.1.2012)',
+            self::TYPE_CULTURE => 'Culture, literature, medicine (9% 1.1.2012)'
         );
     }
     
@@ -62,5 +60,75 @@ class Tax extends Entity
     public static function getTaxTypeValues()
     {
         return array_keys(self::getTaxTypes());
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set percent
+     *
+     * @param decimal $percent
+     */
+    public function setPercent($percent)
+    {
+        $this->percent = $percent;
+    }
+
+    /**
+     * Get percent
+     *
+     * @return decimal 
+     */
+    public function getPercent()
+    {
+        return $this->percent;
+    }
+
+    /**
+     * Set validity
+     *
+     * @param datetime $validity
+     */
+    public function setValidity($validity)
+    {
+        $this->validity = $validity;
+    }
+
+    /**
+     * Get validity
+     *
+     * @return datetime 
+     */
+    public function getValidity()
+    {
+        return $this->validity;
     }
 }

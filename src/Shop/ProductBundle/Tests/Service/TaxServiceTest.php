@@ -1,6 +1,6 @@
 <?php
 
-namespace Shop\ProductBundle\Tests\Model;
+namespace Shop\ProductBundle\Tests\Service;
 
 use Shop\FrameworkBundle\Test\TestCase,
     Shop\ProductBundle\Service\TaxService,

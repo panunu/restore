@@ -50,6 +50,27 @@ class ProductService
     }
     
     /**
+     * @param  Product $product
+     * @return ProductService 
+     */
+    public function saveProduct(Product $product)
+    {
+        $this->em->persist($product);
+        $this->em->flush();
+        
+        return $this;
+    }
+    
+    /**
+     * @param  Form $form
+     * @return ProductService
+     */
+    public function saveProductByForm(Form $form)
+    {
+        return $this->saveProduct($form->getData());
+    }
+    
+    /**
      * @param  int     $id
      * @return Product
      */
@@ -100,7 +121,7 @@ class ProductService
     public function getProductForm(Product $product)
     {
         return $this->formFactory->create(
-            new ProductFormType(get_class($product), $product)
+            new ProductFormType(get_class($product)), $product
         );
     }
 }

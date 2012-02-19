@@ -3,14 +3,13 @@
 namespace Shop\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
-    \Gedmo\Mapping\Annotation as Gedmo,
-    Shop\FrameworkBundle\Entity\AbstractEntity as Entity;
+    \Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="Category")
  * @ORM\Entity
  */
-class Category extends Entity
+class Category
 {
     /**
      * @var integer
@@ -42,12 +41,74 @@ class Category extends Entity
      * @ORM\Column(name="visible", type="boolean", nullable=false)
      */
     protected $visible;
-    
+
     /**
-     * @return string
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean 
+     */
+    public function getVisible()
+    {
+        return $this->visible;
     }
 }
