@@ -34,7 +34,7 @@ class CartService
     public function addProductToCart(Product $product)
     {
         // TODO: Check if non-serializable Product is already ordered.
-        if (!$product->getSerializable() && $this->getCart()->hasProduct($product)) {
+        if ($this->isProductReserved($product)) {
             throw new DomainException('Unique product can not be ordered twice');
         }
         
@@ -68,6 +68,21 @@ class CartService
         $this->getCart()->setProduct($product, (int) $quantity);
         
         return $this->flush();
+    }
+    
+    /**
+     * @param  Product
+     * @return boolean
+     */
+    public function isProductReserved(Product $product)
+    {
+        if (!$product->getSerializable()) {        
+            if ($this->getCart()->hasProduct($product)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     /**

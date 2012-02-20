@@ -42,10 +42,10 @@ class ProductController extends Controller
     public function viewAction($slug)
     {
         return $this->render('ShopProductBundle:Product:view.html.twig', array(
-            'product'  => $this->getProductService()->getProductBySlug($slug),
+            'product'  => $product = $this->getProductService()->getProductBySlug($slug),
             'history'  => $this->getHistoryService()->getUrl(),
             'sold'     => false, // TODO: Figure this out
-            'reserved' => true, // TODO: Figure this out
+            'reserved' => $this->getCartService()->isProductReserved($product),
         ));
     }
     
@@ -119,6 +119,14 @@ class ProductController extends Controller
     public function getBrandService()
     {
         return $this->get('shop_brand.service.brand');
+    }
+    
+    /**
+     * @return CartService
+     */
+    public function getCartService()
+    {
+        return $this->get('shop_cart.service.cart');
     }
     
     /**

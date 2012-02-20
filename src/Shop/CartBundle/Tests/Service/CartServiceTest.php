@@ -98,4 +98,21 @@ class CartServiceTest extends TestCase
         
         $this->service->editProductInCart($this->product, 2);
     }
+    
+    /**
+     * @test
+     */
+    public function knowsThatUniqueProductsThatAreAddedToCartAreReserved()
+    {
+        $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
+            'serializable' => false,
+            'customizable' => false,
+        ));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->service->addProductToCart($product);
+        
+        $this->assertTrue($this->service->isProductReserved($product));
+    }
 }
