@@ -39,6 +39,12 @@
     background-image: -ms-linear-gradient(top, @top, @bottom);
 }
 
+.rotate(@degrees)
+{
+    -webkit-transform: rotate(@degrees); 
+    -moz-transform:    rotate(@degrees);
+}
+
 // Global
 
 body { cursor: default; font-family: @font; font-size: @size; }
@@ -241,9 +247,28 @@ form
 
 .sold
 {
-    width:  75px;
-    height: 75px;
+    position: relative;
+
+    width:  55px;
+    height: 55px;
+
+    margin: -25px 0px -80px 0;
+
+    font-size:      smaller;
+    line-height:    55px;
+    text-transform: uppercase;
+    text-align:     center;
+    color:          white;
 
     background-color: @grey;
-    color: white;
+
+    border: 5px solid white;
+
+    z-index: 100;
+    
+    div { .rotate(-10deg); }
+
+    .box-shadow(0px 2px 4px @grey);
+    .gradient-vertical(orange, #ff7d00);
+    .rounded(75px);
 }

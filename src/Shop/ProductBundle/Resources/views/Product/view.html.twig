@@ -10,6 +10,7 @@
     <div class="sixteen columns alpha omega">
         <div class="ten columns alpha">
             <img src="/images/placeholder.png" class="ten columns alpha omega" alt="{{ product.name }}, {{ product.brand.name }}" />
+            
             <img src="/images/placeholder-2.png" class="ten columns alpha omega" alt="{{ product.name }}, {{ product.brand.name }}" />
         </div>
 
@@ -22,20 +23,36 @@
             </h2>
             
             <article class="six columns alpha omega add-bottom justify">
-                {{ product.description }}   
+                {{ product.description }}
             </article>
                 
-            <article class="six columns alpha omega add-bottom justify smaller">
-                {{ 'text.product.customizable'|trans }}   
-            </article>
+            {% if product.customizable %}
+                <article class="six columns alpha omega justify smaller half-bottom">
+                    <aside class="one columns alpha">
+                        <img src="/images/scissors.gif" alt="" class="left" title="{{ 'This product is customizable'|trans }}" />
+                    </aside>
+
+                    <div class="five columns omega">
+                        {{ 'text.product.customizable'|trans }} 
+                        <a href="#">{{ 'text.product.contact.us'|trans }}</a>
+                    </div>
+                </article>
+            {% endif %}
             
+            <div class="six columns alpha omega">&nbsp;</div>
+                
             <div class="six columns alpha omega add-bottom">
                 <div class="two columns alpha">
                     <h2>{{ product.priceWithTax|money }}</h2>
                 </div>
 
                 <div class="four columns omega">
-                    <a href="#" class="button right">{{ 'Add to cart'|trans }}</a>
+                    {% if not sold %}
+                        <a href="#" class="button right">{{ 'Add to cart'|trans }}</a>
+                    {% else %}
+                        <!--<div class="sold right" title="{{ 'Would you still like to buy this?'|trans }}"><div>{{ 'Sold'|trans }}</div></div>-->
+                        <a class="button right disabled" title="{{ 'Would you still like to buy this?'|trans }}">{{ 'Add to cart'|trans }}</a>                        
+                    {% endif %}
                     {#<input class="right center" type="text" id="product-count" size="2" value="1"></input>#}
                 </div>                    
             </div>

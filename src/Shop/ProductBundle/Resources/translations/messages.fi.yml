@@ -12,8 +12,10 @@ Browse all: "Näytä kaikki"
 
 # Product view
 
-text.product.customizable: "Jos haluat tilata tämän tuotteen omassa koossasi tai materiaaleillasi, ota yhteyttä."
+text.product.customizable: "Jos haluat tilata tämän tuotteen omassa koossasi tai materiaaleillasi,"
+text.product.contact.us:   "ota yhteyttä!"
 
+This product is customizable: "Tämä tuote on räätälöitävissä"
 Sold: "Myyty"
 
 # Admin

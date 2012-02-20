@@ -44,6 +44,7 @@ class ProductController extends Controller
         return $this->render('ShopProductBundle:Product:view.html.twig', array(
             'product'  => $this->getProductService()->getProductBySlug($slug),
             'history'  => $this->getHistoryService()->getUrl(),
+            'sold'     => true, // TODO: Figure this out
         ));
     }
     
