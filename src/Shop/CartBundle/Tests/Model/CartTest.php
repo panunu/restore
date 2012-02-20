@@ -6,6 +6,10 @@ use Shop\FrameworkBundle\Test\TestCase,
     Shop\CartBundle\Model\Cart,
     \Shop\ProductBundle\Entity\Product;
 
+/**
+ * @group model
+ * @group cart
+ */
 class CartTest extends TestCase
 {
     /**
@@ -25,8 +29,6 @@ class CartTest extends TestCase
 
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function doesNotHaveItemsIfNothingAdded()
     {
@@ -35,8 +37,6 @@ class CartTest extends TestCase
     
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function hasMultipleItems()
     {
@@ -48,8 +48,6 @@ class CartTest extends TestCase
     
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function itemsHaveQuantityAndProduct()
     {
@@ -64,8 +62,6 @@ class CartTest extends TestCase
     
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function decreasesQuantityOfItem()
     {
@@ -85,8 +81,6 @@ class CartTest extends TestCase
     
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function removesItemIfQuantityReachesZero()
     {
@@ -98,8 +92,6 @@ class CartTest extends TestCase
     
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function countsTotalItemQuantity()
     {
@@ -117,8 +109,6 @@ class CartTest extends TestCase
     
     /**
      * @test
-     * @group model
-     * @group cart
      */
     public function countsTotalPriceOfCart()
     {
@@ -135,5 +125,16 @@ class CartTest extends TestCase
             '27.98',
             $this->cart->getTotalPrice()
         );
+    }
+    
+    /**
+     * @test
+     */
+    public function knowsIfHasProduct()
+    {
+        $this->assertFalse($this->cart->hasProduct($this->product));
+                
+        $this->cart->addProduct($this->product);
+        $this->assertTrue($this->cart->hasProduct($this->product));
     }
 }

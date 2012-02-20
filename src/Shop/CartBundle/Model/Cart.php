@@ -66,6 +66,15 @@ class Cart
     }
     
     /**
+     * @param  Product $product
+     * @return boolean
+     */
+    public function hasProduct(Product $product)
+    {
+        return array_key_exists($product->getId(), $this->items);
+    }
+    
+    /**
      * @return array
      */
     public function getProducts()
@@ -110,6 +119,4 @@ class Cart
         
         return $this;
     }
-    
-    
 }

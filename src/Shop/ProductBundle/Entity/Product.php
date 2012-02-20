@@ -53,6 +53,20 @@ class Product
     protected $priceWithTax;
     
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="serializable", type="boolean", nullable=false)
+     */
+    protected $serializable;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="customizable", type="boolean", nullable=false)
+     */
+    protected $customizable;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="tax", type="integer", length="2", nullable=false)
@@ -221,5 +235,45 @@ class Product
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set serializable
+     *
+     * @param boolean $serializable
+     */
+    public function setSerializable($serializable)
+    {
+        $this->serializable = $serializable;
+    }
+
+    /**
+     * Get serializable
+     *
+     * @return boolean 
+     */
+    public function getSerializable()
+    {
+        return $this->serializable;
+    }
+
+    /**
+     * Set customizable
+     *
+     * @param boolean $customizable
+     */
+    public function setCustomizable($customizable)
+    {
+        $this->customizable = $customizable;
+    }
+
+    /**
+     * Get customizable
+     *
+     * @return boolean 
+     */
+    public function getCustomizable()
+    {
+        return $this->customizable;
     }
 }

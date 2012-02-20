@@ -1,3 +1,5 @@
+# Product browsing
+
 All brands:     "Kaikki merkit"
 All categories: "Kaikki kategoriat"
 
@@ -8,6 +10,14 @@ Add to cart: "Lisää ostoskoriin"
 Browse all: "Näytä kaikki"
 -products:  "-tuotteet"
 
+# Product view
+
+text.product.customizable: "Jos haluat tilata tämän tuotteen omassa koossasi tai materiaaleillasi, ota yhteyttä."
+
+Sold: "Myyty"
+
+# Admin
+
 New product:  "Uusi tuote"
 Edit product: "Muokkaa tuotetta"
 
@@ -17,6 +27,8 @@ Pricewithtax: "Verollinen hinta (esim. 19,99)"
 Brand:        "Merkki"
 Category:     "Kategoria"
 Tax:          "Vero"
+Serializable: "Sarjatuotanto"
+Customizable: "Mittatilaustyömahdollisuus"
 
 Products and services (23% 1.1.2012):         "Tuotteet ja palvelut (23% 1.1.2012)"
 Food and groceries (13% 1.1.2012):            "Ravintola-, ateriapalvelut (13% 1.1.2012)"

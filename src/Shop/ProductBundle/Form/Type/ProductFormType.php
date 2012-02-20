@@ -16,6 +16,8 @@ class ProductFormType extends AbstractType
     {
         $builder->add('name')
             ->add('description', 'textarea')
+            ->add('serializable')
+            ->add('customizable')
             ->add('priceWithTax', 'money')
             ->add('tax', 'choice', array('choices' => 
                 Tax::getTaxTypes()))

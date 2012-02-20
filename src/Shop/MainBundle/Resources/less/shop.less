@@ -82,6 +82,7 @@ a.button, button, submit, input[type="submit"]
     cursor: pointer;
 
     &:hover { color: white; text-shadow: 0px 1px 2px #666; .gradient-vertical(@warm, #8c847c); }
+    &.disabled { color: #eee; text-shadow: 0px 1px 2px #333; text-decoration: line-through; cursor: default; }
 
     .gradient-vertical(@warm, #8c847c);
     .box-shadow(0px 2px 2px @shadow);
@@ -236,4 +237,13 @@ form
     .page { margin-left: 1px; margin-right: 1px; }
 
     .buttons { width: 90px; }
+}
+
+.sold
+{
+    width:  75px;
+    height: 75px;
+
+    background-color: @grey;
+    color: white;
 }

@@ -4,7 +4,8 @@ namespace Shop\CartBundle\Service;
 
 use \Symfony\Component\HttpFoundation\Session,
     Shop\CartBundle\Model\Cart,
-    Shop\ProductBundle\Entity\Product;
+    Shop\ProductBundle\Entity\Product,
+    \DomainException;
 
 class CartService
 {
@@ -32,6 +33,11 @@ class CartService
      */
     public function addProductToCart(Product $product)
     {
+        // TODO: Check if non-serializable Product is already ordered.
+        if (!$product->getSerializable() && $this->getCart()->hasProduct($product)) {
+            throw new DomainException('Unique product can not be ordered twice');
+        }
+        
         $this->getCart()->addProduct($product);
                 
         return $this->flush();
@@ -55,6 +61,10 @@ class CartService
      */
     public function editProductInCart(Product $product, $quantity)
     {
+        if (!$product->getSerializable() && $quantity > 1) {
+            throw new DomainException('Unique product can not be ordered twice');
+        }
+        
         $this->getCart()->setProduct($product, (int) $quantity);
         
         return $this->flush();

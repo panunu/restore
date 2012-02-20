@@ -7,13 +7,12 @@
         <h1 class="half-bottom left">{{ product.name }}</h1>
     </div>
 
-
     <div class="sixteen columns alpha omega">
-        <div id="product-showcase" class="ten columns alpha">
+        <div class="ten columns alpha">
             <img src="/images/placeholder.png" class="ten columns alpha omega" alt="{{ product.name }}, {{ product.brand.name }}" />
             <img src="/images/placeholder-2.png" class="ten columns alpha omega" alt="{{ product.name }}, {{ product.brand.name }}" />
         </div>
-                
+
         <div class="six columns omega">
             <h2 class="six columns alpha omega add-bottom">
                 <a href="{{ url('product_filter_brand', { 'brand': product.brand.slug }) }}" class="default"
@@ -24,6 +23,10 @@
             
             <article class="six columns alpha omega add-bottom justify">
                 {{ product.description }}   
+            </article>
+                
+            <article class="six columns alpha omega add-bottom justify smaller">
+                {{ 'text.product.customizable'|trans }}   
             </article>
             
             <div class="six columns alpha omega add-bottom">

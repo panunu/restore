@@ -42,8 +42,8 @@ class ProductController extends Controller
     public function viewAction($slug)
     {
         return $this->render('ShopProductBundle:Product:view.html.twig', array(
-            'product' => $this->getProductService()->getProductBySlug($slug),
-            'history' => $this->getHistoryService()->getUrl()
+            'product'  => $this->getProductService()->getProductBySlug($slug),
+            'history'  => $this->getHistoryService()->getUrl(),
         ));
     }
     

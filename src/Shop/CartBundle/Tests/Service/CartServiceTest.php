@@ -7,6 +7,10 @@ use Shop\FrameworkBundle\Test\TestCase,
     Shop\CartBundle\Service\CartService,
     Shop\ProductBundle\Entity\Product;
 
+/**
+ * @group service
+ * @group cart
+ */
 class CartServiceTest extends TestCase
 {
     /**
@@ -26,8 +30,6 @@ class CartServiceTest extends TestCase
         
     /**
      * @test
-     * @group service
-     * @group cart
      */
     public function knowsIfDoesNotHaveCartStoredInSession()
     {
@@ -36,8 +38,6 @@ class CartServiceTest extends TestCase
     
     /**
      * @test
-     * @group service
-     * @group cart
      */
     public function addsProductToCart()
     {
@@ -51,19 +51,51 @@ class CartServiceTest extends TestCase
     
     /**
      * @test
-     * @group service
-     * @group cart
      */
     public function removesProductFromCart()
     {
         $this->service->addProductToCart($this->product)
-            ->addProductToCart($this->product)
-            ->addProductToCart($this->product)
-            ->removeProductFromCart($this->product);
+            ->removeProductFromCart($this->product)
+            ->addProductToCart($this->product);
         
         $items = $this->service->getCart()->getItems();
         
-        $this->assertEquals(2, $items[$this->product->getId()]->getQuantity());
+        $this->assertEquals(1, $items[$this->product->getId()]->getQuantity());
         $this->assertEquals(1, count($this->service->getCart()->getProducts()));
+    }
+    
+    
+    /**
+     * @test
+     * @expectedException        DomainException
+     * @expectedExceptionMessage Unique product can not be ordered twice
+     */
+    public function canNotAddMultipleUniqueProductsToCart()
+    {
+        $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
+            'serializable' => false,
+            'customizable' => false,
+        ));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->service->addProductToCart($product)->addProductToCart($product);
+    }
+    
+    /**
+     * @test
+     * @expectedException        DomainException
+     * @expectedExceptionMessage Unique product can not be ordered twice
+     */
+    public function canNotEditMultipleUniqueProductsToCart()
+    {
+        $product = $this->getFixtureFactory()->get('ProductBundle\Entity\Product', array(
+            'serializable' => false,
+            'customizable' => false,
+        ));
+        
+        $this->getEntityManager()->flush();
+        
+        $this->service->editProductInCart($this->product, 2);
     }
 }

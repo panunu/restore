@@ -64,6 +64,8 @@ class ProductServiceTest extends TestCase
         $product->setCategory($this->category);
         $product->setPriceWithTax('1.00');
         $product->setTax($this->tax->getType());
+        $product->setSerializable(false);
+        $product->setCustomizable(false);
         
         return $product;
     }

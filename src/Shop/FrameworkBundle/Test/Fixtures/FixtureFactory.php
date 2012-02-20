@@ -36,6 +36,8 @@ class FixtureFactory extends BaseFixtureFactory
             'tax'          => Tax::TYPE_GENERAL,
             'brand'        => FieldDef::reference('BrandBundle\Entity\Brand'),
             'category'     => FieldDef::reference('ProductBundle\Entity\Category'),
+            'serializable' => false, 
+            'customizable' => false, 
         ));
         
         $this->defineEntity('BrandBundle\Entity\Brand', array(
