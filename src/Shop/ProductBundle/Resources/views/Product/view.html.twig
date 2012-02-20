@@ -47,12 +47,15 @@
                 </div>
 
                 <div class="four columns omega">
-                    {% if not sold %}
+                    {% if not sold and not reserved %}
                         <a href="#" class="button right">{{ 'Add to cart'|trans }}</a>
+                    {% elseif sold %}
+                        <div class="sold right" title="{{ 'Would you still like to buy this?'|trans }}"><div>{{ 'Sold'|trans }}</div></div>
+                        <a class="button right disabled" title="{{ 'Would you still like to buy this?'|trans }}">{{ 'Add to cart'|trans }}</a> 
                     {% else %}
-                        <!--<div class="sold right" title="{{ 'Would you still like to buy this?'|trans }}"><div>{{ 'Sold'|trans }}</div></div>-->
-                        <a class="button right disabled" title="{{ 'Would you still like to buy this?'|trans }}">{{ 'Add to cart'|trans }}</a>                        
+                        <a class="button right disabled" title="{{ 'You already have this product in your cart'|trans }}">{{ 'Add to cart'|trans }}</a>
                     {% endif %}
+                        
                     {#<input class="right center" type="text" id="product-count" size="2" value="1"></input>#}
                 </div>                    
             </div>
